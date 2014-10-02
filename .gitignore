@@ -14,4 +14,4 @@ profile
 *.moved-aside
 DerivedData
 .idea/
-shatokuapp.xcodeproj/project.pbxproj
+bartndr.xcodeproj/project.pbxproj

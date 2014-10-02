@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D5A9D92D-3456-45EC-9C45-57C7774DD2D8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>bartndrapp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>FC858FB57BDCDFC0B43E6578022FAB019E2BFAEE</key>
+		<string>https://github.com/pkayfire/bartndr_mobile.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>bartndrapp.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>FC858FB57BDCDFC0B43E6578022FAB019E2BFAEE</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/pkayfire/bartndr_mobile.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FC858FB57BDCDFC0B43E6578022FAB019E2BFAEE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FC858FB57BDCDFC0B43E6578022FAB019E2BFAEE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>bartndrapp</string>
+		</dict>
+	</array>
+</dict>
+</plist>

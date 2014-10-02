@@ -3,7 +3,7 @@
 //  bartndrapp
 //
 //  Created by Peter Kim on 10/1/14.
-//  Copyright (c) 2014 Bartdndr. All rights reserved.
+//  Copyright (c) 2014 Bartndr. All rights reserved.
 //
 
 #import "AppDelegate.h"
