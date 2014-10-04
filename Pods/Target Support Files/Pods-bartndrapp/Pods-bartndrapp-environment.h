@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_Braintree_Venmo 3
 #define COCOAPODS_VERSION_PATCH_Braintree_Venmo 1
 
+// CWStatusBarNotification
+#define COCOAPODS_POD_AVAILABLE_CWStatusBarNotification
+#define COCOAPODS_VERSION_MAJOR_CWStatusBarNotification 2
+#define COCOAPODS_VERSION_MINOR_CWStatusBarNotification 1
+#define COCOAPODS_VERSION_PATCH_CWStatusBarNotification 3
+
 // Parse
 #define COCOAPODS_POD_AVAILABLE_Parse
 #define COCOAPODS_VERSION_MAJOR_Parse 1

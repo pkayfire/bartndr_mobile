@@ -9,6 +9,8 @@ pod 'Parse'
 pod 'SDWebImage'
 pod 'Braintree', :git => 'https://github.com/braintree/braintree_ios.git'
 
+pod 'CWStatusBarNotification', '~> 2.1.3'
+
 end
 
 target "bartndrappTests" do
