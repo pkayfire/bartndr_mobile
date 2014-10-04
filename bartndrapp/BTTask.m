@@ -9,6 +9,8 @@
 #import "BTTask.h"
 #import <Parse/PFObject+Subclass.h>
 
+#import "BTItem.h"
+
 @implementation BTTask
 
 @dynamic status;
@@ -24,11 +26,11 @@
     return @"Task";
 }
 
-+ (BTTask *)createTaskForItem:(BTItem *)item
++ (BTTask *)createTaskForItemID:(NSString *)itemID;
 {
     BTTask *task = [[BTTask alloc] init];
-    task.status = TaskStatusCreated;
-    task.for_item = item;
+    task.status = [NSNumber numberWithInt:TaskStatusCreated];
+    task.for_item = [BTItem objectWithoutDataWithClassName:@"Item" objectId:itemID];
     
     return task;
 }

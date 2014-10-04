@@ -138,21 +138,26 @@
 }
 
 - (IBAction)handleCheckOut:(id)sender {
+    [self.checkOutButton setUserInteractionEnabled:NO];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.statusBarNotification displayNotificationWithMessage:@"Checking Out..." completion:nil];
     });
     
     [[BTItem processItems:[self.selectedMenuItems mutableCopy]] continueWithBlock:^id(BFTask *task) {
+        [self.selectedMenuItems removeAllObjects];
+        [self.menuTableView reloadData];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.statusBarNotification dismissNotification];
+        });
         
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.checkOutButton setUserInteractionEnabled:YES];
+            [self.statusBarNotification displayNotificationWithMessage:@"Check Out Complete!" forDuration:2.5];
+        });
+
+        return nil;
     }];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.statusBarNotification displayNotificationWithMessage:@"Checking Out Complete!" completion:nil];
-    });
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.statusBarNotification dismissNotification];
-    });
 }
 
 @end

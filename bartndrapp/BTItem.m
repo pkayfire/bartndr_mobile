@@ -37,13 +37,15 @@
     
     NSMutableArray *tasks = [[NSMutableArray alloc] init];
     
+    NSLog(@"%@", items);
+    
     for (id key in items) {
-        BTItem *item = (BTItem *)key;
-        NSNumber *quantity = [items objectForKey:item];
+        NSString *itemID = (NSString *)key;
+        NSNumber *quantity = [items objectForKey:itemID];
         NSNumber *counter = @0;
         
-        while (counter < quantity) {
-            BTTask *task = [BTTask createTaskForItem:item];
+        while ([counter intValue] < [quantity intValue]) {
+            BTTask *task = [BTTask createTaskForItemID:itemID];
             [tasks addObject:task];
             counter = [NSNumber numberWithInt:[counter intValue] + 1];
         }
