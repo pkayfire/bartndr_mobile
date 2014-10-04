@@ -24,7 +24,7 @@
     return @"Task";
 }
 
-+ (BTTask *)createTasksForItem:(BTItem *)item
++ (BTTask *)createTaskForItem:(BTItem *)item
 {
     BTTask *task = [[BTTask alloc] init];
     task.status = TaskStatusCreated;

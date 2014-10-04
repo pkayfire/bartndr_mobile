@@ -14,6 +14,8 @@
 
 + (NSString *)parseClassName;
 
++ (BFTask *)processItems:(NSMutableDictionary *)items;
+
 @property NSString *item_name;
 @property NSString *item_description;
 @property NSString *image_url;

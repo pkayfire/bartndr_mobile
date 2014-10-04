@@ -35,7 +35,7 @@
     PFQuery *itemsQuery = [BTItem query];
     [itemsQuery whereKey:@"for_store" equalTo:self];
     [itemsQuery orderByAscending:@"item_name"];
-    [itemsQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
+    [itemsQuery setCachePolicy:kPFCachePolicyNetworkElseCache];
     
     [itemsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSLog(@"here");

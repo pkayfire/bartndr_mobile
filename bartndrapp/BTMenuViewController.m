@@ -21,22 +21,47 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.statusBarNotification = [CWStatusBarNotification new];
+    self.statusBarNotification.notificationLabelBackgroundColor = [UIColor whiteColor];
+    self.statusBarNotification.notificationLabelTextColor = [UIColor blackColor];
     
     self.menuTableView.delegate = self;
     self.menuTableView.dataSource = self;
     
     self.menuItems = [[NSMutableArray alloc] init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationEnteredForeground:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"viewWillAppear");
+    [self updateMenuItems];
+}
+
+- (void)applicationEnteredForeground:(NSNotification *)notification {
+    NSLog(@"Application Entered Foreground");
+    [self updateMenuItems];
+}
+
+- (void)updateMenuItems
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.statusBarNotification displayNotificationWithMessage:@"Refreshing Menu..." completion:nil];
+    });
+    
     [[[[AppDelegate get] currentStore] getItems] continueWithBlock:^id(BFTask *task) {
-        NSLog(@"Here");
         if (!task.error) {
             self.menuItems = (NSMutableArray *)task.result;
-            NSLog(@"%@", self.menuItems);
             [self.menuTableView reloadData];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self.statusBarNotification dismissNotification];
+            });
         } else {
             NSLog(@"%@", task.error);
         }
