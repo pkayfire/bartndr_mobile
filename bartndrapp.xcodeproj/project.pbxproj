@@ -13,7 +13,6 @@
 		66607F2719DCF84E000DC2A1 /* bartndrapp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66607F2519DCF84E000DC2A1 /* bartndrapp.xcdatamodeld */; };
 		66607F2D19DCF84E000DC2A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66607F2B19DCF84E000DC2A1 /* Main.storyboard */; };
 		66607F2F19DCF84E000DC2A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66607F2E19DCF84E000DC2A1 /* Images.xcassets */; };
-		66607F3219DCF84E000DC2A1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66607F3019DCF84E000DC2A1 /* LaunchScreen.xib */; };
 		66607F3E19DCF84E000DC2A1 /* bartndrappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66607F3D19DCF84E000DC2A1 /* bartndrappTests.m */; };
 		668CD01D19DFF77D0096C4A8 /* BTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 668CD01C19DFF77D0096C4A8 /* BTTableViewCell.m */; };
 		66DE128919DFAB15009632E9 /* BTTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DE128819DFAB15009632E9 /* BTTask.m */; };
@@ -50,7 +49,6 @@
 		66607F2619DCF84E000DC2A1 /* bartndrapp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = bartndrapp.xcdatamodel; sourceTree = "<group>"; };
 		66607F2C19DCF84E000DC2A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		66607F2E19DCF84E000DC2A1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		66607F3119DCF84E000DC2A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		66607F3719DCF84E000DC2A1 /* bartndrappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bartndrappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66607F3C19DCF84E000DC2A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66607F3D19DCF84E000DC2A1 /* bartndrappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bartndrappTests.m; sourceTree = "<group>"; };
@@ -158,7 +156,6 @@
 				66607F2319DCF84E000DC2A1 /* AppDelegate.m */,
 				66607F2B19DCF84E000DC2A1 /* Main.storyboard */,
 				66607F2E19DCF84E000DC2A1 /* Images.xcassets */,
-				66607F3019DCF84E000DC2A1 /* LaunchScreen.xib */,
 				66607F2519DCF84E000DC2A1 /* bartndrapp.xcdatamodeld */,
 				66607F1E19DCF84E000DC2A1 /* Supporting Files */,
 			);
@@ -309,7 +306,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				66607F2D19DCF84E000DC2A1 /* Main.storyboard in Resources */,
-				66607F3219DCF84E000DC2A1 /* LaunchScreen.xib in Resources */,
 				66607F2F19DCF84E000DC2A1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,14 +395,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		66607F3019DCF84E000DC2A1 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				66607F3119DCF84E000DC2A1 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -491,6 +479,7 @@
 			baseConfigurationReference = 573124B86617D549EE96835E /* Pods-bartndrapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "bartndrapp/Bartndr-Prefix.pch";
 				INFOPLIST_FILE = bartndrapp/Info.plist;
@@ -506,6 +495,7 @@
 			baseConfigurationReference = 4135CCB632699BB514043965 /* Pods-bartndrapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "bartndrapp/Bartndr-Prefix.pch";
 				INFOPLIST_FILE = bartndrapp/Info.plist;

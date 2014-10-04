@@ -58,7 +58,7 @@
 
 - (void)updateMenuItems
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.50 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.statusBarNotification displayNotificationWithMessage:@"Refreshing Menu..." completion:nil];
     });
     
@@ -72,6 +72,13 @@
             });
         } else {
             NSLog(@"%@", task.error);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self.statusBarNotification dismissNotification];
+            });
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self.statusBarNotification displayNotificationWithMessage:@"An error occured!" forDuration:2.5];
+            });
         }
         return nil;
     }];
@@ -84,7 +91,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 100;
 }
 
 
@@ -104,8 +111,9 @@
     
     BTItem *menuItem = [self.menuItems objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = menuItem.item_name;
-    cell.detailTextLabel.text = menuItem.item_description;
+    cell.nameLabel.text = menuItem.item_name;
+    cell.descriptionLabel.text = menuItem.item_description;
+    cell.priceLabel.text = [NSString stringWithFormat:@"$%@", menuItem.price];
     
     NSNumber *quantity = [self.selectedMenuItems objectForKey:[menuItem objectId]];
     

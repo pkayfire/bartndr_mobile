@@ -12,5 +12,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *quantityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *minusButton;
+@property (weak, nonatomic) IBOutlet UIButton *plusButton;
+
 
 @end
