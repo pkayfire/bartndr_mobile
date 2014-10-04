@@ -100,7 +100,8 @@ static NSString *beacon_region_UUID_string = @"8BDBDE7A-E3E2-4941-8F45-743B1CAF8
 {
     if (state == CLRegionStateInside) {
         //Start Ranging
-        if ([region isKindOfClass:[CLBeaconRegion class]]) {
+        NSLog(@"%ld", [[UIApplication sharedApplication] applicationState]);
+        if ([region isKindOfClass:[CLBeaconRegion class]] && ([[UIApplication sharedApplication] applicationState] == UIApplicationStateInactive) )  {
             CLBeaconRegion *beaconRegion = (CLBeaconRegion *) region;
             [manager startRangingBeaconsInRegion:beaconRegion];
         }
@@ -115,34 +116,36 @@ static NSString *beacon_region_UUID_string = @"8BDBDE7A-E3E2-4941-8F45-743B1CAF8
 {
     // Find Closest iBeacon
     CLBeacon *closestBeacon;
-    for (CLBeacon *beacon in beacons) {
-        NSLog(@"%@", beacon);
-        if (!closestBeacon) {
-            closestBeacon = beacon;
-        } else {
-            if (beacon.accuracy < closestBeacon.accuracy) {
+    if (beacons.count > 0) {
+        for (CLBeacon *beacon in beacons) {
+            NSLog(@"%@", beacon);
+            if (!closestBeacon) {
                 closestBeacon = beacon;
+            } else {
+                if (beacon.accuracy < closestBeacon.accuracy) {
+                    closestBeacon = beacon;
+                }
             }
         }
-    }
-    
-    [[BTStore getStoreForUUID:region.proximityUUID.UUIDString andMinorID:[closestBeacon.minor stringValue]] continueWithBlock:^id(BFTask *task) {
-        if (!task.error && task.result && !self.sentLocalPush) {
-            self.currentStore = (BTStore *) task.result;
-            UILocalNotification *notification = [[UILocalNotification alloc] init];
-            notification.alertBody = [NSString stringWithFormat:@"Welcome to %@. Swipe now to order!", self.currentStore.store_name];
-            notification.soundName = @"Default";
-            
-            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-            
-            self.sentLocalPush = YES;
-        } else {
-            if (!task.error) { NSLog(@"Local Push already sent."); }
-            else { NSLog(@"%@", task.error); }
-        }
         
-        return nil;
-    }];
+        [[BTStore getStoreForUUID:region.proximityUUID.UUIDString andMinorID:[closestBeacon.minor stringValue]] continueWithBlock:^id(BFTask *task) {
+            if (!task.error && task.result && !self.sentLocalPush) {
+                self.currentStore = (BTStore *) task.result;
+                UILocalNotification *notification = [[UILocalNotification alloc] init];
+                notification.alertBody = [NSString stringWithFormat:@"Welcome to %@. Swipe now to order!", self.currentStore.store_name];
+                notification.soundName = @"Default";
+                
+                [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+                
+                self.sentLocalPush = YES;
+            } else {
+                if (!task.error) { NSLog(@"Local Push already sent."); }
+                else { NSLog(@"%@", task.error); }
+            }
+            
+            return nil;
+        }];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
