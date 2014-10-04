@@ -38,8 +38,6 @@ static NSString *beacon_three_UUID_string = @"D4FB9ECE-59A7-4AFF-BDF0-6EFE9CFD1E
     
     //UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    self.currentStoreID = @"";
-    
     // Initialize CLLocationManager
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -71,8 +69,8 @@ static NSString *beacon_three_UUID_string = @"D4FB9ECE-59A7-4AFF-BDF0-6EFE9CFD1E
     //[self.locationManager startMonitoringForRegion:beaconRegion_three];
     
     [self.locationManager startMonitoringForRegion:beaconRegion_one];
-    [self.locationManager startMonitoringForRegion:beaconRegion_two];
-    [self.locationManager startMonitoringForRegion:beaconRegion_three];
+//    [self.locationManager startMonitoringForRegion:beaconRegion_two];
+//    [self.locationManager startMonitoringForRegion:beaconRegion_three];
     
     NSLog(@"didFinishLaunchingWithOptions");
     
@@ -87,6 +85,7 @@ static NSString *beacon_three_UUID_string = @"D4FB9ECE-59A7-4AFF-BDF0-6EFE9CFD1E
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    self.sentLocalPush = NO;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -125,21 +124,23 @@ static NSString *beacon_three_UUID_string = @"D4FB9ECE-59A7-4AFF-BDF0-6EFE9CFD1E
         if ([region isKindOfClass:[CLBeaconRegion class]]) {
             CLBeaconRegion *beaconRegion = (CLBeaconRegion *) region;
             [manager startRangingBeaconsInRegion:beaconRegion];
-            UILocalNotification *notification = [[UILocalNotification alloc] init];
             
-            NSLog(@"%@", beaconRegion.proximityUUID.UUIDString);
-            
-            if ([beaconRegion.proximityUUID.UUIDString isEqualToString:beacon_one_UUID_string]) {
-                notification.alertBody = @"Welcome to Maruchi's Inn. Swipe now to order!";
-            } else if ([beaconRegion.proximityUUID.UUIDString isEqualToString:beacon_two_UUID_string]) {
-                notification.alertBody = @"Welcome to The Emily. Swipe now to order!";
-            } else if ([beaconRegion.proximityUUID.UUIDString isEqualToString:beacon_three_UUID_string]) {
-                notification.alertBody = @"Welcome to Liz's Pub. Swipe now to order!";
-            }
-            
-            notification.soundName = @"Default";
-            
-            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+            [[BTStore getStoreForUUID:beaconRegion.proximityUUID.UUIDString] continueWithBlock:^id(BFTask *task) {
+                if (!task.error && task.result && !self.sentLocalPush) {
+                    self.currentStore = (BTStore *) task.result;
+                    UILocalNotification *notification = [[UILocalNotification alloc] init];
+                    notification.alertBody = [NSString stringWithFormat:@"Welcome to %@. Swipe now to order!", self.currentStore.store_name];
+                    notification.soundName = @"Default";
+                    
+                    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+                    
+                    self.sentLocalPush = YES;
+                } else {
+                    NSLog(@"%@", task.error);
+                }
+                
+                return nil;
+            }];
         }
     } else {
         

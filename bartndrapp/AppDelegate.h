@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+#import "BTStore.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -19,7 +21,9 @@
 @property NSUUID *beaconUUID_two;
 @property NSUUID *beaconUUID_three;
 
-@property NSString *currentStoreID;
+@property BTStore *currentStore;
+
+@property BOOL sentLocalPush;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;

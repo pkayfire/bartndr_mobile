@@ -12,6 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *menuTableView;
 
-@property (weak, nonatomic) IBOutlet UITableViewCell *BTTableViewCell;
+
 
 @end

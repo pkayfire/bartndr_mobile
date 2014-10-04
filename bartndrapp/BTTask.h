@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, TaskStatus) {
 
 + (NSString *)parseClassName;
 
-@property NSNumber* status;
-@property BTItem* forItem;
+@property NSNumber *status;
+@property BTItem *forItem;
 
 @end

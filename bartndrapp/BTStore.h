@@ -12,9 +12,13 @@
 
 + (NSString *)parseClassName;
 
-@property NSString* name;
-@property NSString* description;
-@property NSString* imageURL;
-@property NSString* UUID;
+@property NSString *store_name;
+@property NSString *store_description;
+@property NSString *image_url;
+@property NSString *UUID;
+
+- (BFTask *)getItems;
+
++ (BFTask *)getStoreForUUID:(NSString *)uuid;
 
 @end

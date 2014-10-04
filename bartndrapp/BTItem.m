@@ -11,11 +11,11 @@
 
 @implementation BTItem
 
-@dynamic name;
-@dynamic description;
-@dynamic imageURL;
+@dynamic item_name;
+@dynamic item_description;
+@dynamic image_url;
 
-@dynamic forStore;
+@dynamic for_store;
 
 @dynamic price;
 

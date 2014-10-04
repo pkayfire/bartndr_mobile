@@ -7,6 +7,8 @@
 //
 
 #import "BTMenuViewController.h"
+#import "BTTableViewCell.h"
+
 
 @interface BTMenuViewController ()
 
@@ -17,6 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.menuTableView.delegate = self;
+    self.menuTableView.dataSource = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -24,15 +29,26 @@
     
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"BTCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    static NSString *cellIdentifier = @"BTTableViewCell";
+    BTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[BTTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    }
+    
+    cell.textLabel.text = @"TEST";
     
     return cell;
 }

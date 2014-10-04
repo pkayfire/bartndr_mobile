@@ -14,6 +14,7 @@
 		66607F2F19DCF84E000DC2A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66607F2E19DCF84E000DC2A1 /* Images.xcassets */; };
 		66607F3219DCF84E000DC2A1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66607F3019DCF84E000DC2A1 /* LaunchScreen.xib */; };
 		66607F3E19DCF84E000DC2A1 /* bartndrappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66607F3D19DCF84E000DC2A1 /* bartndrappTests.m */; };
+		668CD01D19DFF77D0096C4A8 /* BTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 668CD01C19DFF77D0096C4A8 /* BTTableViewCell.m */; };
 		66DE128919DFAB15009632E9 /* BTTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DE128819DFAB15009632E9 /* BTTask.m */; };
 		66DE128C19DFAB32009632E9 /* BTStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DE128B19DFAB32009632E9 /* BTStore.m */; };
 		66DE128F19DFAB43009632E9 /* BTItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DE128E19DFAB43009632E9 /* BTItem.m */; };
@@ -51,6 +52,8 @@
 		66607F3719DCF84E000DC2A1 /* bartndrappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bartndrappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66607F3C19DCF84E000DC2A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66607F3D19DCF84E000DC2A1 /* bartndrappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bartndrappTests.m; sourceTree = "<group>"; };
+		668CD01B19DFF77D0096C4A8 /* BTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTableViewCell.h; sourceTree = "<group>"; };
+		668CD01C19DFF77D0096C4A8 /* BTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTableViewCell.m; sourceTree = "<group>"; };
 		66DE128619DF60B2009632E9 /* Bartndr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bartndr-Prefix.pch"; sourceTree = "<group>"; };
 		66DE128719DFAB15009632E9 /* BTTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTask.h; sourceTree = "<group>"; };
 		66DE128819DFAB15009632E9 /* BTTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTask.m; sourceTree = "<group>"; };
@@ -144,6 +147,7 @@
 		66607F1D19DCF84E000DC2A1 /* bartndrapp */ = {
 			isa = PBXGroup;
 			children = (
+				668CD01A19DFF76E0096C4A8 /* ViewObjects */,
 				6645905D19DD025400B82777 /* OperationControllers */,
 				6645905C19DD024700B82777 /* Models */,
 				6645905B19DD024100B82777 /* ViewControllers */,
@@ -183,6 +187,15 @@
 				66607F3C19DCF84E000DC2A1 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		668CD01A19DFF76E0096C4A8 /* ViewObjects */ = {
+			isa = PBXGroup;
+			children = (
+				668CD01B19DFF77D0096C4A8 /* BTTableViewCell.h */,
+				668CD01C19DFF77D0096C4A8 /* BTTableViewCell.m */,
+			);
+			name = ViewObjects;
 			sourceTree = "<group>";
 		};
 		A35419E3859DD061842C8261 /* Frameworks */ = {
@@ -349,6 +362,7 @@
 				66DE128C19DFAB32009632E9 /* BTStore.m in Sources */,
 				66607F2419DCF84E000DC2A1 /* AppDelegate.m in Sources */,
 				66DE128919DFAB15009632E9 /* BTTask.m in Sources */,
+				668CD01D19DFF77D0096C4A8 /* BTTableViewCell.m in Sources */,
 				66DE129519DFACB0009632E9 /* BTMenuViewController.m in Sources */,
 				66607F2119DCF84E000DC2A1 /* main.m in Sources */,
 			);

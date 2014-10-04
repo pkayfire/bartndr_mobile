@@ -14,12 +14,12 @@
 
 + (NSString *)parseClassName;
 
-@property NSString* name;
-@property NSString* description;
-@property NSString* imageURL;
+@property NSString *item_name;
+@property NSString *item_description;
+@property NSString *image_url;
 
-@property BTStore* forStore;
+@property BTStore *for_store;
 
-@property NSNumber* price;
+@property NSNumber *price;
 
 @end
