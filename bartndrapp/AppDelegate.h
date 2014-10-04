@@ -17,9 +17,7 @@
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
-@property NSUUID *beaconUUID_one;
-@property NSUUID *beaconUUID_two;
-@property NSUUID *beaconUUID_three;
+@property CLBeaconRegion *beaconRegion;
 
 @property BTStore *currentStore;
 

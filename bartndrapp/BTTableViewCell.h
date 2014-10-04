@@ -11,5 +11,6 @@
 @interface BTTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *quantityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 
 @end

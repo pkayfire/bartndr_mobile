@@ -111,6 +111,8 @@
     
     if (quantity) {
         cell.quantityLabel.text = [NSString stringWithFormat:@"%@", quantity];
+    } else {
+        cell.quantityLabel.text = @"0";
     }
     
     return cell;

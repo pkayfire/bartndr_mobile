@@ -17,6 +17,7 @@
 @dynamic store_description;
 @dynamic image_url;
 @dynamic UUID;
+@dynamic minorID;
 
 + (void)load
 {
@@ -51,12 +52,15 @@
 }
 
 + (BFTask *)getStoreForUUID:(NSString *)uuid
+                 andMinorID:(NSString *)minorID
 {
     BFTaskCompletionSource *getStoreCompletionSource = [BFTaskCompletionSource taskCompletionSource];
+    NSLog(@"%@", minorID);
     
     PFQuery *storeQuery = [BTStore query];
     [storeQuery whereKey:@"UUID" equalTo:uuid];
-    [storeQuery setCachePolicy:kPFCachePolicyNetworkElseCache];
+    [storeQuery whereKey:@"minorID" equalTo:minorID];
+    [storeQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
     
     [storeQuery getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!error) {
@@ -67,6 +71,13 @@
     }];
 
     return getStoreCompletionSource.task;
+}
+
++ (BFTask *)hasTasksToComplete
+{
+    BFTaskCompletionSource *hasTasksCompletionSource = [BFTaskCompletionSource taskCompletionSource];
+
+    return hasTasksCompletionSource.task;
 }
 
 @end

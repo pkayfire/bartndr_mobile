@@ -19,9 +19,7 @@
 
 @implementation AppDelegate
 
-static NSString *beacon_one_UUID_string = @"8BDBDE7A-E3E2-4941-8F45-743B1CAF8758";
-static NSString *beacon_two_UUID_string = @"6A39DE93-9826-4793-B978-DD7E3605644E";
-static NSString *beacon_three_UUID_string = @"D4FB9ECE-59A7-4AFF-BDF0-6EFE9CFD1E5F";
+static NSString *beacon_region_UUID_string = @"8BDBDE7A-E3E2-4941-8F45-743B1CAF8758";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -46,31 +44,13 @@ static NSString *beacon_three_UUID_string = @"D4FB9ECE-59A7-4AFF-BDF0-6EFE9CFD1E
     [self.locationManager requestWhenInUseAuthorization];
     [self.locationManager setPausesLocationUpdatesAutomatically:NO];
     
-    self.beaconUUID_one = [[NSUUID alloc] initWithUUIDString:beacon_one_UUID_string];
-    CLBeaconRegion *beaconRegion_one = [[CLBeaconRegion alloc] initWithProximityUUID:self.beaconUUID_one major:1 minor:1 identifier:@"beacon_one"];
-    beaconRegion_one.notifyOnEntry = YES;
-    beaconRegion_one.notifyOnExit = YES;
-    beaconRegion_one.notifyEntryStateOnDisplay = YES;
+    NSUUID *beaconUUID = [[NSUUID alloc] initWithUUIDString:beacon_region_UUID_string];
+    self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:beaconUUID major:1 identifier:@"beacon_region"];
+    self.beaconRegion.notifyOnEntry = YES;
+    self.beaconRegion.notifyOnExit = YES;
+    self.beaconRegion.notifyEntryStateOnDisplay = YES;
     
-    self.beaconUUID_two = [[NSUUID alloc] initWithUUIDString:beacon_two_UUID_string];
-    CLBeaconRegion *beaconRegion_two = [[CLBeaconRegion alloc] initWithProximityUUID:self.beaconUUID_two identifier:@"beacon_two"];
-    beaconRegion_two.notifyOnEntry = YES;
-    beaconRegion_two.notifyOnExit = YES;
-    beaconRegion_two.notifyEntryStateOnDisplay = YES;
-    
-    self.beaconUUID_three = [[NSUUID alloc] initWithUUIDString:beacon_three_UUID_string];
-    CLBeaconRegion *beaconRegion_three = [[CLBeaconRegion alloc] initWithProximityUUID:self.beaconUUID_three identifier:@"beacon_three"];
-    beaconRegion_three.notifyOnEntry = YES;
-    beaconRegion_three.notifyOnExit = YES;
-    beaconRegion_three.notifyEntryStateOnDisplay = YES;
-    
-    [self.locationManager startMonitoringForRegion:beaconRegion_one];
-    //[self.locationManager startMonitoringForRegion:beaconRegion_two];
-    //[self.locationManager startMonitoringForRegion:beaconRegion_three];
-    
-    [self.locationManager startMonitoringForRegion:beaconRegion_one];
-//    [self.locationManager startMonitoringForRegion:beaconRegion_two];
-//    [self.locationManager startMonitoringForRegion:beaconRegion_three];
+    [self.locationManager startMonitoringForRegion:self.beaconRegion];
     
     NSLog(@"didFinishLaunchingWithOptions");
     
@@ -123,27 +103,9 @@ static NSString *beacon_three_UUID_string = @"D4FB9ECE-59A7-4AFF-BDF0-6EFE9CFD1E
         if ([region isKindOfClass:[CLBeaconRegion class]]) {
             CLBeaconRegion *beaconRegion = (CLBeaconRegion *) region;
             [manager startRangingBeaconsInRegion:beaconRegion];
-            
-            [[BTStore getStoreForUUID:beaconRegion.proximityUUID.UUIDString] continueWithBlock:^id(BFTask *task) {
-                if (!task.error && task.result && !self.sentLocalPush) {
-                    self.currentStore = (BTStore *) task.result;
-                    UILocalNotification *notification = [[UILocalNotification alloc] init];
-                    notification.alertBody = [NSString stringWithFormat:@"Welcome to %@. Swipe now to order!", self.currentStore.store_name];
-                    notification.soundName = @"Default";
-                    
-                    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-                    
-                    self.sentLocalPush = YES;
-                } else {
-                    if (!task.error) { NSLog(@"Local Push already sent."); }
-                    else { NSLog(@"%@", task.error); }
-                }
-                
-                return nil;
-            }];
         }
     } else {
-        
+        NSLog(@"No Beacons In Range.");
     }
 }
 
@@ -151,10 +113,36 @@ static NSString *beacon_three_UUID_string = @"D4FB9ECE-59A7-4AFF-BDF0-6EFE9CFD1E
         didRangeBeacons:(NSArray *)beacons
                inRegion:(CLBeaconRegion *)region
 {
-//    NSLog(@"Found Beacons");
-//    for (CLBeacon *beacon in beacons) {
-//        NSLog(@"%@", beacon);
-//    }
+    // Find Closest iBeacon
+    CLBeacon *closestBeacon;
+    for (CLBeacon *beacon in beacons) {
+        NSLog(@"%@", beacon);
+        if (!closestBeacon) {
+            closestBeacon = beacon;
+        } else {
+            if (beacon.accuracy < closestBeacon.accuracy) {
+                closestBeacon = beacon;
+            }
+        }
+    }
+    
+    [[BTStore getStoreForUUID:region.proximityUUID.UUIDString andMinorID:[closestBeacon.minor stringValue]] continueWithBlock:^id(BFTask *task) {
+        if (!task.error && task.result && !self.sentLocalPush) {
+            self.currentStore = (BTStore *) task.result;
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            notification.alertBody = [NSString stringWithFormat:@"Welcome to %@. Swipe now to order!", self.currentStore.store_name];
+            notification.soundName = @"Default";
+            
+            [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+            
+            self.sentLocalPush = YES;
+        } else {
+            if (!task.error) { NSLog(@"Local Push already sent."); }
+            else { NSLog(@"%@", task.error); }
+        }
+        
+        return nil;
+    }];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region

@@ -16,9 +16,11 @@
 @property NSString *store_description;
 @property NSString *image_url;
 @property NSString *UUID;
+@property NSString *minorID;
 
 - (BFTask *)getItems;
 
-+ (BFTask *)getStoreForUUID:(NSString *)uuid;
++ (BFTask *)getStoreForUUID:(NSString *)uuid
+                 andMinorID:(NSString *)minorID;
 
 @end
