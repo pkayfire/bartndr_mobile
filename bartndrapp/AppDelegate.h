@@ -9,9 +9,17 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
+
+@property NSUUID *beaconUUID_one;
+@property NSUUID *beaconUUID_two;
+@property NSUUID *beaconUUID_three;
+
+@property NSString *currentStoreID;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;

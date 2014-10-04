@@ -10,11 +10,19 @@
 		66607F2119DCF84E000DC2A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 66607F2019DCF84E000DC2A1 /* main.m */; };
 		66607F2419DCF84E000DC2A1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66607F2319DCF84E000DC2A1 /* AppDelegate.m */; };
 		66607F2719DCF84E000DC2A1 /* bartndrapp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66607F2519DCF84E000DC2A1 /* bartndrapp.xcdatamodeld */; };
-		66607F2A19DCF84E000DC2A1 /* BTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66607F2919DCF84E000DC2A1 /* BTViewController.m */; };
 		66607F2D19DCF84E000DC2A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66607F2B19DCF84E000DC2A1 /* Main.storyboard */; };
 		66607F2F19DCF84E000DC2A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66607F2E19DCF84E000DC2A1 /* Images.xcassets */; };
 		66607F3219DCF84E000DC2A1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66607F3019DCF84E000DC2A1 /* LaunchScreen.xib */; };
 		66607F3E19DCF84E000DC2A1 /* bartndrappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66607F3D19DCF84E000DC2A1 /* bartndrappTests.m */; };
+		66DE128919DFAB15009632E9 /* BTTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DE128819DFAB15009632E9 /* BTTask.m */; };
+		66DE128C19DFAB32009632E9 /* BTStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DE128B19DFAB32009632E9 /* BTStore.m */; };
+		66DE128F19DFAB43009632E9 /* BTItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DE128E19DFAB43009632E9 /* BTItem.m */; };
+		66DE129519DFACB0009632E9 /* BTMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DE129419DFACB0009632E9 /* BTMenuViewController.m */; };
+		66DE129719DFC8F4009632E9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DE129619DFC8F4009632E9 /* CoreLocation.framework */; };
+		66DE129919DFD2D4009632E9 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DE129819DFD2D4009632E9 /* CoreBluetooth.framework */; };
+		66DE129B19DFD2DF009632E9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DE129A19DFD2DF009632E9 /* UIKit.framework */; };
+		66DE129D19DFD2E8009632E9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DE129C19DFD2E8009632E9 /* Foundation.framework */; };
+		66DE129F19DFD2F1009632E9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DE129E19DFD2F1009632E9 /* CoreGraphics.framework */; };
 		FC0145589DD183AA5793632D /* libPods-bartndrapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB052CAC210D4535C1B5F771 /* libPods-bartndrapp.a */; };
 /* End PBXBuildFile section */
 
@@ -37,14 +45,26 @@
 		66607F2219DCF84E000DC2A1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		66607F2319DCF84E000DC2A1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		66607F2619DCF84E000DC2A1 /* bartndrapp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = bartndrapp.xcdatamodel; sourceTree = "<group>"; };
-		66607F2819DCF84E000DC2A1 /* BTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTViewController.h; sourceTree = "<group>"; };
-		66607F2919DCF84E000DC2A1 /* BTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTViewController.m; sourceTree = "<group>"; };
 		66607F2C19DCF84E000DC2A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		66607F2E19DCF84E000DC2A1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		66607F3119DCF84E000DC2A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		66607F3719DCF84E000DC2A1 /* bartndrappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bartndrappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66607F3C19DCF84E000DC2A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66607F3D19DCF84E000DC2A1 /* bartndrappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bartndrappTests.m; sourceTree = "<group>"; };
+		66DE128619DF60B2009632E9 /* Bartndr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bartndr-Prefix.pch"; sourceTree = "<group>"; };
+		66DE128719DFAB15009632E9 /* BTTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTask.h; sourceTree = "<group>"; };
+		66DE128819DFAB15009632E9 /* BTTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTask.m; sourceTree = "<group>"; };
+		66DE128A19DFAB32009632E9 /* BTStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTStore.h; sourceTree = "<group>"; };
+		66DE128B19DFAB32009632E9 /* BTStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTStore.m; sourceTree = "<group>"; };
+		66DE128D19DFAB43009632E9 /* BTItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTItem.h; sourceTree = "<group>"; };
+		66DE128E19DFAB43009632E9 /* BTItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTItem.m; sourceTree = "<group>"; };
+		66DE129319DFACB0009632E9 /* BTMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTMenuViewController.h; sourceTree = "<group>"; };
+		66DE129419DFACB0009632E9 /* BTMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTMenuViewController.m; sourceTree = "<group>"; };
+		66DE129619DFC8F4009632E9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		66DE129819DFD2D4009632E9 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		66DE129A19DFD2DF009632E9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		66DE129C19DFD2E8009632E9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		66DE129E19DFD2F1009632E9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EB052CAC210D4535C1B5F771 /* libPods-bartndrapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bartndrapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -53,6 +73,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66DE129F19DFD2F1009632E9 /* CoreGraphics.framework in Frameworks */,
+				66DE129D19DFD2E8009632E9 /* Foundation.framework in Frameworks */,
+				66DE129B19DFD2DF009632E9 /* UIKit.framework in Frameworks */,
+				66DE129919DFD2D4009632E9 /* CoreBluetooth.framework in Frameworks */,
+				66DE129719DFC8F4009632E9 /* CoreLocation.framework in Frameworks */,
 				FC0145589DD183AA5793632D /* libPods-bartndrapp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,6 +95,8 @@
 		6645905B19DD024100B82777 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				66DE129319DFACB0009632E9 /* BTMenuViewController.h */,
+				66DE129419DFACB0009632E9 /* BTMenuViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -77,6 +104,12 @@
 		6645905C19DD024700B82777 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				66DE128719DFAB15009632E9 /* BTTask.h */,
+				66DE128819DFAB15009632E9 /* BTTask.m */,
+				66DE128A19DFAB32009632E9 /* BTStore.h */,
+				66DE128B19DFAB32009632E9 /* BTStore.m */,
+				66DE128D19DFAB43009632E9 /* BTItem.h */,
+				66DE128E19DFAB43009632E9 /* BTItem.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -116,8 +149,6 @@
 				6645905B19DD024100B82777 /* ViewControllers */,
 				66607F2219DCF84E000DC2A1 /* AppDelegate.h */,
 				66607F2319DCF84E000DC2A1 /* AppDelegate.m */,
-				66607F2819DCF84E000DC2A1 /* BTViewController.h */,
-				66607F2919DCF84E000DC2A1 /* BTViewController.m */,
 				66607F2B19DCF84E000DC2A1 /* Main.storyboard */,
 				66607F2E19DCF84E000DC2A1 /* Images.xcassets */,
 				66607F3019DCF84E000DC2A1 /* LaunchScreen.xib */,
@@ -131,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				66607F1F19DCF84E000DC2A1 /* Info.plist */,
+				66DE128619DF60B2009632E9 /* Bartndr-Prefix.pch */,
 				66607F2019DCF84E000DC2A1 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -156,6 +188,11 @@
 		A35419E3859DD061842C8261 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66DE129E19DFD2F1009632E9 /* CoreGraphics.framework */,
+				66DE129C19DFD2E8009632E9 /* Foundation.framework */,
+				66DE129A19DFD2DF009632E9 /* UIKit.framework */,
+				66DE129819DFD2D4009632E9 /* CoreBluetooth.framework */,
+				66DE129619DFC8F4009632E9 /* CoreLocation.framework */,
 				EB052CAC210D4535C1B5F771 /* libPods-bartndrapp.a */,
 			);
 			name = Frameworks;
@@ -308,8 +345,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				66607F2719DCF84E000DC2A1 /* bartndrapp.xcdatamodeld in Sources */,
+				66DE128F19DFAB43009632E9 /* BTItem.m in Sources */,
+				66DE128C19DFAB32009632E9 /* BTStore.m in Sources */,
 				66607F2419DCF84E000DC2A1 /* AppDelegate.m in Sources */,
-				66607F2A19DCF84E000DC2A1 /* BTViewController.m in Sources */,
+				66DE128919DFAB15009632E9 /* BTTask.m in Sources */,
+				66DE129519DFACB0009632E9 /* BTMenuViewController.m in Sources */,
 				66607F2119DCF84E000DC2A1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,9 +474,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = "bartndrapp/Bartndr-Prefix.pch";
 				INFOPLIST_FILE = bartndrapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "25db3882-3d70-4037-a3e8-d08ae38a2e8e";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -447,9 +489,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREFIX_HEADER = "bartndrapp/Bartndr-Prefix.pch";
 				INFOPLIST_FILE = bartndrapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "25db3882-3d70-4037-a3e8-d08ae38a2e8e";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

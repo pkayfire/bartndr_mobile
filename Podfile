@@ -6,6 +6,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 target "bartndrapp" do
 
 pod 'Parse'
+pod 'SDWebImage'
+pod 'Braintree', :git => 'https://github.com/braintree/braintree_ios.git'
 
 end
 

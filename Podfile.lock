@@ -1,13 +1,48 @@
 PODS:
   - Bolts (1.1.2)
+  - Braintree (3.3.1):
+    - Braintree/API
+    - Braintree/Drop-In
+    - Braintree/Payments
+    - Braintree/PayPal
+    - Braintree/UI
+    - Braintree/Venmo
+  - Braintree/API (3.3.1)
+  - Braintree/Drop-In (3.3.1):
+    - Braintree/API
+    - Braintree/Payments
+    - Braintree/PayPal
+    - Braintree/UI
+    - Braintree/Venmo
+  - Braintree/Payments (3.3.1):
+    - Braintree/API
+    - Braintree/PayPal
+    - Braintree/Venmo
+  - Braintree/PayPal (3.3.1):
+    - Braintree/API
+    - Braintree/UI
+  - Braintree/UI (3.3.1)
+  - Braintree/Venmo (3.3.1):
+    - Braintree/API
   - Parse (1.4.1):
     - Bolts (~> 1.1.2)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.7.1)
 
 DEPENDENCIES:
+  - Braintree (from `https://github.com/braintree/braintree_ios.git`)
   - Parse
+  - SDWebImage
+
+EXTERNAL SOURCES:
+  Braintree:
+    :git: https://github.com/braintree/braintree_ios.git
 
 SPEC CHECKSUMS:
   Bolts: 2635e8698a630774689441047f3465d78c48d485
+  Braintree: 86731372d08a325b74768444e718d4f2277f52a1
   Parse: db1a09c832b7509edcc88a65dc07229f5e578c73
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
 
 COCOAPODS: 0.34.1
