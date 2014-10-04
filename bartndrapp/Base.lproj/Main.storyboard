@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="19"/>
+                            <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="19.200000762939453"/>
                             <color key="textColor" red="1" green="0.21568627450980393" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
                     </navigationBar>
@@ -47,14 +47,14 @@
                                     <action selector="handleCheckOut:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mVY-zN-OiG"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-rs-Zz3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-rs-Zz3">
                                 <rect key="frame" x="0.0" y="64" width="320" height="189"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hSl-RY-lL3">
-                                <rect key="frame" x="0.0" y="252" width="320" height="316"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="hSl-RY-lL3">
+                                <rect key="frame" x="0.0" y="251" width="320" height="317"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell tag="10" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BTTableViewCell" rowHeight="100" id="Bq9-Do-TDA" customClass="BTTableViewCell">
+                                    <tableViewCell tag="10" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BTTableViewCell" rowHeight="100" id="Bq9-Do-TDA" customClass="BTTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bq9-Do-TDA" id="ggk-vE-g5P">
@@ -67,28 +67,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLx-gp-Myp" userLabel="Price">
-                                                    <rect key="frame" x="99" y="63" width="38" height="21"/>
+                                                    <rect key="frame" x="99" y="64" width="38" height="21"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlT-QR-mbu" userLabel="Minus">
-                                                    <rect key="frame" x="285" y="67" width="17" height="22"/>
-                                                    <state key="normal" image="minus_button">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QE-Xv-lGh" userLabel="Plus">
-                                                    <rect key="frame" x="285" y="10" width="17" height="22"/>
-                                                    <state key="normal" image="plus_button">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The best drink you'll ever have." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ze5-ae-lT8" userLabel="Description">
-                                                    <rect key="frame" x="99" y="40" width="168" height="27"/>
-                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -98,16 +78,21 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-2j-2YS" userLabel="Image">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-2j-2YS" userLabel="Image">
                                                     <rect key="frame" x="19" y="17" width="65" height="65"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Drink it now..." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ze5-ae-lT8" userLabel="Description">
+                                                    <rect key="frame" x="99" y="39" width="168" height="19"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="Ze5-ae-lT8" id="XxR-GV-arQ"/>
-                                            <outlet property="minusButton" destination="rlT-QR-mbu" id="cZW-KG-qP9"/>
+                                            <outlet property="itemImageView" destination="Rfj-2j-2YS" id="KAo-KP-1l0"/>
                                             <outlet property="nameLabel" destination="Fq3-pe-sEQ" id="CEf-Ya-9YN"/>
-                                            <outlet property="plusButton" destination="4QE-Xv-lGh" id="kFn-gF-qnT"/>
                                             <outlet property="priceLabel" destination="uLx-gp-Myp" id="RuH-JH-DSO"/>
                                             <outlet property="quantityLabel" destination="Msz-2I-QqP" id="Hc2-Xo-MbL"/>
                                         </connections>
@@ -119,9 +104,6 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Maruchi's Inn" id="3B2-jb-CwW">
-                        <barButtonItem key="leftBarButtonItem" image="back_arrow" id="OjS-BJ-HMd">
-                            <color key="tintColor" red="0.9137254901960784" green="0.21568627450980393" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="progress" id="WXO-Lg-F7s">
                             <color key="tintColor" red="0.9137254901960784" green="0.21568627450980393" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
@@ -129,18 +111,16 @@
                     <connections>
                         <outlet property="checkOutButton" destination="Bnr-3Y-PKO" id="qWv-sq-bc6"/>
                         <outlet property="menuTableView" destination="hSl-RY-lL3" id="0wN-2l-syl"/>
+                        <outlet property="storeImageView" destination="wD6-rs-Zz3" id="hNd-E6-bKT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-70" y="85"/>
+            <point key="canvasLocation" x="-70" y="81"/>
         </scene>
     </scenes>
     <resources>
-        <image name="back_arrow" width="12" height="20"/>
-        <image name="minus_button" width="17" height="17"/>
-        <image name="plus_button" width="17" height="17"/>
-        <image name="progress" width="18" height="18"/>
+        <image name="progress" width="20" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -15,8 +15,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *minusButton;
-@property (weak, nonatomic) IBOutlet UIButton *plusButton;
+@property (strong) UIButton *minusButton;
+@property (strong) UIButton *plusButton;
 
+@property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
+
+- (void)handlePlusButton:(id)sender;
+- (void)handleMinusButton:(id)sender;
 
 @end

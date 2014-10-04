@@ -20,6 +20,6 @@
 @property NSMutableArray *menuItems;
 
 @property CWStatusBarNotification *statusBarNotification;
-
+@property (weak, nonatomic) IBOutlet UIImageView *storeImageView;
 
 @end

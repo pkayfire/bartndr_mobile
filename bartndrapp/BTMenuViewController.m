@@ -13,6 +13,8 @@
 
 #import "BTItem.h"
 
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @interface BTMenuViewController ()
 
 @property NSMutableDictionary *selectedMenuItems;
@@ -23,6 +25,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    if ([[AppDelegate get] currentStore]) {
+        //[self setTitle:[[[AppDelegate get] currentStore] store_name]];
+    }
     
     self.statusBarNotification = [CWStatusBarNotification new];
     self.statusBarNotification.notificationLabelBackgroundColor = [UIColor whiteColor];
@@ -38,6 +45,8 @@
                                              selector:@selector(applicationEnteredForeground:)
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
+    
+    [self.storeImageView sd_setImageWithURL:[NSURL URLWithString:@"http://drinks.seriouseats.com/images/2013/06/20130604-novela-4.jpg"] placeholderImage:[UIImage imageNamed:@"placeholder_store"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -66,6 +75,8 @@
         if (!task.error) {
             self.menuItems = (NSMutableArray *)task.result;
             [self.menuTableView reloadData];
+            
+            //[self setTitle:[[[AppDelegate get] currentStore] store_name]];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [self.statusBarNotification dismissNotification];
@@ -111,6 +122,7 @@
     
     BTItem *menuItem = [self.menuItems objectAtIndex:indexPath.row];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.nameLabel.text = menuItem.item_name;
     cell.descriptionLabel.text = menuItem.item_description;
     cell.priceLabel.text = [NSString stringWithFormat:@"$%@", menuItem.price];
@@ -123,23 +135,23 @@
         cell.quantityLabel.text = @"0";
     }
     
+    [cell.itemImageView sd_setImageWithURL:[NSURL URLWithString:@"http://scontent-a.cdninstagram.com/hphotos-xaf1/t51.2885-15/10632396_338122119691992_62189954_n.jpg"] placeholderImage:[UIImage imageNamed:@"placeholder_store"]];
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.menuTableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    BTItem *menuItem = [self.menuItems objectAtIndex:indexPath.row];
-    
-    if ([self.selectedMenuItems objectForKey:[menuItem objectId]]) {
-        NSNumber *quantity = [self.selectedMenuItems objectForKey:[menuItem objectId]];
-        [self.selectedMenuItems setObject:[NSNumber numberWithInt:[quantity intValue] + 1] forKey:[menuItem objectId]];
-        [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else {
-        [self.selectedMenuItems setObject:[NSNumber numberWithInt:1] forKey:[menuItem objectId]];
-        [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
+//    BTItem *menuItem = [self.menuItems objectAtIndex:indexPath.row];
+//    
+//    if ([self.selectedMenuItems objectForKey:[menuItem objectId]]) {
+//        NSNumber *quantity = [self.selectedMenuItems objectForKey:[menuItem objectId]];
+//        [self.selectedMenuItems setObject:[NSNumber numberWithInt:[quantity intValue] + 1] forKey:[menuItem objectId]];
+//        [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    } else {
+//        [self.selectedMenuItems setObject:[NSNumber numberWithInt:1] forKey:[menuItem objectId]];
+//        [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
