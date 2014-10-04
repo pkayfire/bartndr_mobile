@@ -39,7 +39,8 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bnr-3Y-PKO">
                                 <rect key="frame" x="0.0" y="517" width="320" height="51"/>
-                                <state key="normal" title="Check Out">
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16.200000762939453"/>
+                                <state key="normal" title="Check Out ">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>

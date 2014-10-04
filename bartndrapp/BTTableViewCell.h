@@ -18,6 +18,12 @@
 @property (strong) UIButton *minusButton;
 @property (strong) UIButton *plusButton;
 
+@property (strong) NSString *itemObjectID;
+
+@property (strong) NSMutableDictionary *selectedMenuItems;
+
+@property (strong) UITableView *menuTableView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
 
 - (void)handlePlusButton:(id)sender;
