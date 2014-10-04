@@ -13,6 +13,9 @@
 @interface BTMenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *menuTableView;
+@property (weak, nonatomic) IBOutlet UIButton *checkOutButton;
+
+- (IBAction)handleCheckOut:(id)sender;
 
 @property NSMutableArray *menuItems;
 

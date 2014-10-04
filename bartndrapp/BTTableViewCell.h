@@ -10,4 +10,6 @@
 
 @interface BTTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *quantityLabel;
+
 @end

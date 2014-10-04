@@ -15,6 +15,8 @@
 
 @interface BTMenuViewController ()
 
+@property NSMutableDictionary *selectedMenuItems;
+
 @end
 
 @implementation BTMenuViewController
@@ -30,6 +32,7 @@
     self.menuTableView.dataSource = self;
     
     self.menuItems = [[NSMutableArray alloc] init];
+    self.selectedMenuItems = [[NSMutableDictionary alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationEnteredForeground:)
@@ -43,6 +46,11 @@
     [self updateMenuItems];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    
+}
+
 - (void)applicationEnteredForeground:(NSNotification *)notification {
     NSLog(@"Application Entered Foreground");
     [self updateMenuItems];
@@ -50,7 +58,7 @@
 
 - (void)updateMenuItems
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.statusBarNotification displayNotificationWithMessage:@"Refreshing Menu..." completion:nil];
     });
     
@@ -74,6 +82,12 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.menuItems count];
@@ -93,7 +107,29 @@
     cell.textLabel.text = menuItem.item_name;
     cell.detailTextLabel.text = menuItem.item_description;
     
+    NSNumber *quantity = [self.selectedMenuItems objectForKey:[menuItem objectId]];
+    
+    if (quantity) {
+        cell.quantityLabel.text = [NSString stringWithFormat:@"%@", quantity];
+    }
+    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.menuTableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    BTItem *menuItem = [self.menuItems objectAtIndex:indexPath.row];
+    
+    if ([self.selectedMenuItems objectForKey:[menuItem objectId]]) {
+        NSNumber *quantity = [self.selectedMenuItems objectForKey:[menuItem objectId]];
+        [self.selectedMenuItems setObject:[NSNumber numberWithInt:[quantity intValue] + 1] forKey:[menuItem objectId]];
+        [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else {
+        [self.selectedMenuItems setObject:[NSNumber numberWithInt:1] forKey:[menuItem objectId]];
+        [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,14 +137,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)handleCheckOut:(id)sender {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.statusBarNotification displayNotificationWithMessage:@"Checking Out..." completion:nil];
+    });
+    
+    [[BTItem processItems:[self.selectedMenuItems mutableCopy]] continueWithBlock:^id(BFTask *task) {
+        
+    }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.statusBarNotification displayNotificationWithMessage:@"Checking Out Complete!" completion:nil];
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.statusBarNotification dismissNotification];
+    });
 }
-*/
 
 @end
