@@ -34,10 +34,12 @@
     
     PFQuery *itemsQuery = [BTItem query];
     [itemsQuery whereKey:@"for_store" equalTo:self];
-    [itemsQuery orderByAscending:@"name"];
+    [itemsQuery orderByAscending:@"item_name"];
     [itemsQuery setCachePolicy:kPFCachePolicyCacheElseNetwork];
     
     [itemsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSLog(@"here");
+        NSLog(@"%@", objects);
         if (!error) {
             [getItemsCompletionSource setResult:[objects mutableCopy]];
         } else {

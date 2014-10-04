@@ -12,7 +12,7 @@
 @implementation BTTask
 
 @dynamic status;
-@dynamic forItem;
+@dynamic for_item;
 
 + (void)load
 {
@@ -22,6 +22,15 @@
 + (NSString *)parseClassName
 {
     return @"Task";
+}
+
++ (BTTask *)createTasksForItem:(BTItem *)item
+{
+    BTTask *task = [[BTTask alloc] init];
+    task.status = TaskStatusCreated;
+    task.for_item = item;
+    
+    return task;
 }
 
 @end

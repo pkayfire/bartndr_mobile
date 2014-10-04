@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *menuTableView;
 
+@property NSMutableArray *menuItems;
 
 
 @end

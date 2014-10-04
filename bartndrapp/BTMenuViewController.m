@@ -9,6 +9,9 @@
 #import "BTMenuViewController.h"
 #import "BTTableViewCell.h"
 
+#import "AppDelegate.h"
+
+#import "BTItem.h"
 
 @interface BTMenuViewController ()
 
@@ -22,21 +25,33 @@
     
     self.menuTableView.delegate = self;
     self.menuTableView.dataSource = self;
+    
+    self.menuItems = [[NSMutableArray alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    
+    [[[[AppDelegate get] currentStore] getItems] continueWithBlock:^id(BFTask *task) {
+        NSLog(@"Here");
+        if (!task.error) {
+            self.menuItems = (NSMutableArray *)task.result;
+            NSLog(@"%@", self.menuItems);
+            [self.menuTableView reloadData];
+        } else {
+            NSLog(@"%@", task.error);
+        }
+        return nil;
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [self.menuItems count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -48,7 +63,10 @@
         cell = [[BTTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     
-    cell.textLabel.text = @"TEST";
+    BTItem *menuItem = [self.menuItems objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = menuItem.item_name;
+    cell.detailTextLabel.text = menuItem.item_description;
     
     return cell;
 }
