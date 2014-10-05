@@ -54,7 +54,7 @@
     }
     
     self.totalPrice.text = [NSString stringWithFormat:@"$%@", totalPrice];
-    self.placeOrderButton.titleLabel.text = [NSString stringWithFormat:@"Place Order ($%@)", totalPrice];
+    [self.placeOrderButton setTitle:[NSString stringWithFormat:@"Place Order ($%@)", totalPrice] forState:UIControlStateNormal];
 }
 
 - (void)updateStoreDetails

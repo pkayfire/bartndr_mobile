@@ -28,6 +28,7 @@
 	<string>We need your location to activate Bartndr!</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>remote-notification</string>
 		<string>location</string>
 		<string>bluetooth-peripheral</string>
 	</array>

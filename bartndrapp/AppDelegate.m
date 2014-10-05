@@ -71,6 +71,8 @@ static NSString *beacon_region_UUID_string = @"8BDBDE7A-E3E2-4941-8F45-743B1CAF8
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [self.locationManager startMonitoringForRegion:self.beaconRegion];
+    [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -85,6 +87,16 @@ static NSString *beacon_region_UUID_string = @"8BDBDE7A-E3E2-4941-8F45-743B1CAF8
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    self.sentLocalPush = YES;
+    
+    [self.locationManager stopMonitoringForRegion:self.beaconRegion];
+    [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
+
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    if (currentInstallation.badge != 0) {
+        currentInstallation.badge = 0;
+        [currentInstallation saveEventually];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -158,12 +170,15 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
         
         [[BTStore getStoreForUUID:region.proximityUUID.UUIDString andMinorID:[closestBeacon.minor stringValue]] continueWithBlock:^id(BFTask *task) {
             if (!task.error && task.result && !self.sentLocalPush) {
-                self.currentStore = (BTStore *) task.result;
-                UILocalNotification *notification = [[UILocalNotification alloc] init];
-                notification.alertBody = [NSString stringWithFormat:@"Welcome to %@. Swipe now to order!", self.currentStore.store_name];
-                notification.soundName = @"Default";
                 
-                [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+                if (![[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+                    self.currentStore = (BTStore *) task.result;
+                    UILocalNotification *notification = [[UILocalNotification alloc] init];
+                    notification.alertBody = [NSString stringWithFormat:@"Welcome to %@. Swipe now to order!", self.currentStore.store_name];
+                    notification.soundName = @"Default";
+                    
+                    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+                }
                 
                 self.sentLocalPush = YES;
             } else {
@@ -179,13 +194,13 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
     NSLog(@"didEnterRegion!");
-    if ([region isKindOfClass:[CLBeaconRegion class]]) {
-        UILocalNotification *notification = [[UILocalNotification alloc] init];
-        notification.alertBody = @"Welcome to Maruchi's Inn! Swipe now to order!";
-        notification.soundName = @"Default";
-        
-        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    }
+//    if ([region isKindOfClass:[CLBeaconRegion class]]) {
+//        UILocalNotification *notification = [[UILocalNotification alloc] init];
+//        notification.alertBody = @"Welcome to Maruchi's Inn! Swipe now to order!";
+//        notification.soundName = @"Default";
+//        
+//        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+//    }
 }
 
 #pragma mark - Utility Methods

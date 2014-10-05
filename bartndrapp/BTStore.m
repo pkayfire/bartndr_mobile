@@ -39,8 +39,6 @@
     [itemsQuery setCachePolicy:kPFCachePolicyNetworkElseCache];
     
     [itemsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSLog(@"here");
-        NSLog(@"%@", objects);
         if (!error) {
             [getItemsCompletionSource setResult:[objects mutableCopy]];
         } else {
