@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-526" y="92"/>
         </scene>
-        <!--Maruchi's Inn-->
+        <!--Bartndr-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="BTMenuViewController" sceneMemberID="viewController">
@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="hSl-RY-lL3">
-                                <rect key="frame" x="0.0" y="203" width="320" height="365"/>
+                                <rect key="frame" x="0.0" y="190" width="320" height="378"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell tag="10" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BTTableViewCell" rowHeight="100" id="Bq9-Do-TDA" customClass="BTTableViewCell">
@@ -65,7 +65,7 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-2j-2YS" userLabel="Image">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder_item" translatesAutoresizingMaskIntoConstraints="NO" id="Rfj-2j-2YS" userLabel="Image">
                                                     <rect key="frame" x="19" y="17" width="65" height="65"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Drink it now..." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ze5-ae-lT8" userLabel="Description">
@@ -86,7 +86,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-rs-Zz3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder_store" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-rs-Zz3">
                                 <rect key="frame" x="0.0" y="64" width="320" height="189"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bnr-3Y-PKO">
@@ -104,7 +104,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Maruchi's Inn" id="3B2-jb-CwW">
+                    <navigationItem key="navigationItem" title="Bartndr" id="3B2-jb-CwW">
                         <barButtonItem key="rightBarButtonItem" image="progress" id="WXO-Lg-F7s">
                             <color key="tintColor" red="0.9137254901960784" green="0.21568627450980393" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
@@ -122,6 +122,8 @@
     </scenes>
     <resources>
         <image name="checkout_button" width="320" height="45"/>
+        <image name="placeholder_item" width="250" height="250"/>
+        <image name="placeholder_store" width="320" height="189"/>
         <image name="progress" width="20" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

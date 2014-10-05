@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BTMenuViewController.h"
 
 @interface BTTableViewCell : UITableViewCell
 
@@ -23,6 +24,8 @@
 @property (strong) NSMutableDictionary *selectedMenuItems;
 
 @property (strong) UITableView *menuTableView;
+
+@property (weak) BTMenuViewController *BTMenuVC;
 
 @property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
 

@@ -38,11 +38,13 @@
     if ([self.selectedMenuItems objectForKey:self.itemObjectID]) {
         NSNumber *quantity = [self.selectedMenuItems objectForKey:self.itemObjectID];
         [self.selectedMenuItems setObject:[NSNumber numberWithInt:[quantity intValue] + 1] forKey:self.itemObjectID];
-        [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     } else {
         [self.selectedMenuItems setObject:[NSNumber numberWithInt:1] forKey:self.itemObjectID];
-        [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
+    
+    [self.BTMenuVC updateCheckOutButton];
 }
 
 - (void)handleMinusButton:(id)sender {
@@ -52,12 +54,14 @@
         NSNumber *quantity = [self.selectedMenuItems objectForKey:self.itemObjectID];
         if ([quantity intValue] != 0) {
             [self.selectedMenuItems setObject:[NSNumber numberWithInt:[quantity intValue] - 1] forKey:self.itemObjectID];
-            [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         }
     } else {
         [self.selectedMenuItems setObject:[NSNumber numberWithInt:0] forKey:self.itemObjectID];
-        [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.menuTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     }
+    
+    [self.BTMenuVC updateCheckOutButton];
 }
 
 @end

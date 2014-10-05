@@ -30,9 +30,11 @@
     if ([[AppDelegate get] currentStore]) {
         [[[AppDelegate get] currentStore] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             if (!error) {
-                NSLog(@"%@", object);
+                [[AppDelegate get] setCurrentStore:(BTStore *)object];
+                [self setTitle:[[[AppDelegate get] currentStore] store_name]];
+                [self.storeImageView sd_setImageWithURL:[NSURL URLWithString:[[[AppDelegate get] currentStore] image_url]] placeholderImage:[UIImage imageNamed:@"placeholder_store"]];
             } else {
-                
+                [self.statusBarNotification displayNotificationWithMessage:@"An error occured!" forDuration:2.5];
             }
         }];
     }
@@ -49,12 +51,12 @@
     self.menuItems = [[NSMutableArray alloc] init];
     self.selectedMenuItems = [[NSMutableDictionary alloc] init];
     
+    self.checkOutButton.alpha = 0.0f;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(applicationEnteredForeground:)
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
-    
-    [self.storeImageView sd_setImageWithURL:[NSURL URLWithString:@"https://scontent-b.xx.fbcdn.net/hphotos-xpf1/t31.0-8/10548074_10152372765902732_3235787422795169351_o.jpg"] placeholderImage:[UIImage imageNamed:@"placeholder_store"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -137,6 +139,7 @@
     cell.itemObjectID = menuItem.objectId;
     cell.selectedMenuItems = self.selectedMenuItems;
     cell.menuTableView = self.menuTableView;
+    cell.BTMenuVC = self;
     
     NSNumber *quantity = [self.selectedMenuItems objectForKey:[menuItem objectId]];
     
@@ -193,8 +196,8 @@
     NSLog(@"Total Number of Items: %@", totalNumofItems);
     
     if ([totalNumofItems intValue] > 0) {
-        [self.checkOutButton setTitle:[NSString stringWithFormat:@"Check Out(%@)", totalNumofItems] forState:UIControlStateNormal];
         [self showCheckOutButton];
+        [self.checkOutButton setTitle:[NSString stringWithFormat:@"Check Out (%@)", totalNumofItems] forState:UIControlStateNormal];
     } else {
         [self hideCheckOutButton];
     }
@@ -202,12 +205,20 @@
 
 - (void)showCheckOutButton
 {
-    
+    [UIView animateWithDuration:0.5f delay:0.1f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        self.checkOutButton.alpha = 1.0f;
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 - (void)hideCheckOutButton
 {
-    
+    [UIView animateWithDuration:0.5f delay:0.1f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        self.checkOutButton.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self.checkOutButton setTitle:@"Check Out" forState:UIControlStateNormal];
+    }];
 }
 
 @end
