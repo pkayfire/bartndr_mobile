@@ -13,7 +13,11 @@
 #import "BTStore.h"
 #import "BTItem.h"
 
+#import "CWStatusBarNotification.h"
+
 @interface AppDelegate ()
+
+@property CWStatusBarNotification *statusBarNotification;
 
 @end
 
@@ -24,9 +28,12 @@ static NSString *beacon_region_UUID_string = @"8BDBDE7A-E3E2-4941-8F45-743B1CAF8
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
-        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
-    }
+    UIUserNotificationSettings *settings =
+    [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert |
+     UIUserNotificationTypeBadge |
+     UIUserNotificationTypeSound categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
     
     // Initialize Parse
     [Parse setApplicationId:@"n27hpGo5rFEzX4EBI4OODoThfhTKfi5PDj66ZAks"
@@ -52,8 +59,12 @@ static NSString *beacon_region_UUID_string = @"8BDBDE7A-E3E2-4941-8F45-743B1CAF8
     
     [self.locationManager startMonitoringForRegion:self.beaconRegion];
     
-    NSLog(@"didFinishLaunchingWithOptions");
+    UIColor *bartndrRed = [UIColor colorWithRed:233.0/255.0f green:55.0/255.0f blue:41.0/255.0f alpha:1.0f];
     
+    self.statusBarNotification = [CWStatusBarNotification new];
+    self.statusBarNotification.notificationLabelBackgroundColor = bartndrRed;
+    self.statusBarNotification.notificationLabelTextColor = [UIColor whiteColor];
+        
     return YES;
 }
 
@@ -79,6 +90,24 @@ static NSString *beacon_region_UUID_string = @"8BDBDE7A-E3E2-4941-8F45-743B1CAF8
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
+}
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // Store the deviceToken in the current installatsion and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    if (application.applicationState == UIApplicationStateActive) {
+        [self.statusBarNotification displayNotificationWithMessage:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] forDuration:2.5f];
+    }
 }
 
 #pragma mark - Core Location Delegate Methods

@@ -20,7 +20,6 @@
 @property CLBeaconRegion *beaconRegion;
 
 @property BTStore *currentStore;
-
 @property BOOL sentLocalPush;
 
 + (AppDelegate *)get;
