@@ -22,7 +22,7 @@
 @property BTStore *currentStore;
 @property BOOL sentLocalPush;
 
-@property NSSTring *braintreeClientToken;
+@property NSString *braintreeClientToken;
 
 + (AppDelegate *)get;
 

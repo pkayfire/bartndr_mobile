@@ -22,6 +22,8 @@
 
 @property BTMenuViewController *BTMenuVC;
 
+@property BTDropInViewController *braintreeVC;
+
 @property (weak, nonatomic) IBOutlet UITableView *menuItemsTableView;
 @property (weak, nonatomic) IBOutlet UIButton *placeOrderButton;
 @property (weak, nonatomic) IBOutlet UILabel *totalPrice;

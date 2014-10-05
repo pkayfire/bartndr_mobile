@@ -16,7 +16,7 @@
 #import "CWStatusBarNotification.h"
 
 #import <Braintree/Braintree.h>
-//#import <AFNetworking/AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
 
 
 @interface AppDelegate ()
@@ -50,16 +50,16 @@ static NSString *beacon_region_UUID_string = @"8BDBDE7A-E3E2-4941-8F45-743B1CAF8
     // Intialize Braintree
     [Braintree setReturnURLScheme:@"com.bartndr.bartndrapp.payments"];
     
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    [manager GET:@"https://your-server/client_token.json"
-//      parameters:@{ @"your-server-authentication": @"token", @"your-customer-session": @"session"}
-//         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//             // Setup braintree with responseObject[@"client_token"]
-//             // self.braintree = [Braintree braintreeWithClientToken:responseObject[@"client_token"]];
-//         }
-//         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//             // Handle failure communicating with your server
-//         }];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://api.bartndr.me/braintree/token"
+      parameters:@{}
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             //Setup braintree with responseObject[@"client_token"]
+             self.braintreeClientToken = responseObject[@"braintree_client_token"];
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             // Handle failure communicating with your server
+         }];
 
     // Initialize CLLocationManager
     self.locationManager = [[CLLocationManager alloc] init];
@@ -185,7 +185,6 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     CLBeacon *closestBeacon;
     if (beacons.count > 0) {
         for (CLBeacon *beacon in beacons) {
-            NSLog(@"%@", beacon);
             if (!closestBeacon) {
                 closestBeacon = beacon;
             } else {

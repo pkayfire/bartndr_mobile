@@ -123,27 +123,61 @@
 }
 
 - (IBAction)handlePlaceOrderButton:(id)sender {
-    [self.placeOrderButton setUserInteractionEnabled:NO];
+    AppDelegate *appDelegate = [AppDelegate get];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.statusBarNotification displayNotificationWithMessage:@"Placing Order..." completion:nil];
-    });
-    
-    //Braintree *braintree = [Braintree braintreeWithClientToken:self.clientToken];
-    
-    [[BTItem processItems:[self.selectedMenuItems mutableCopy]] continueWithBlock:^id(BFTask *task) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self.statusBarNotification dismissNotification];
+    if (appDelegate.braintreeClientToken) {
+        Braintree *braintree = [Braintree braintreeWithClientToken:appDelegate.braintreeClientToken];
+        self.braintreeVC = [braintree dropInViewControllerWithDelegate:self];
+        
+        self.braintreeVC.view.tintColor = [UIColor colorWithRed:233.0/255.0f green:55.0/255.0f blue:41.0/255.0f alpha:1.0f];
+        self.braintreeVC.summaryTitle = @"Your Bartndr Order";
+        self.braintreeVC.summaryDescription = @"Yours drinks are almost ready!";
+        self.braintreeVC.displayAmount = self.totalPrice.text;
+        self.braintreeVC.callToActionText = @"Pay Now";
+        
+        self.braintreeVC.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                                                                              target:self
+                                                                                                              action:@selector(userDidCancelPayment)];
+        self.braintreeVC.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithRed:233.0/255.0f green:55.0/255.0f blue:41.0/255.0f alpha:1.0f];
+        
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.braintreeVC];
+        
+        [self presentViewController:navigationController
+                           animated:YES
+                         completion:nil];
+    }
+}
+
+- (void)userDidCancelPayment {
+    [self.braintreeVC dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)dropInViewController:(__unused BTDropInViewController *)viewController didSucceedWithPaymentMethod:(BTPaymentMethod *)paymentMethod {
+    [viewController dismissViewControllerAnimated:YES completion:^{
+        [self.placeOrderButton setUserInteractionEnabled:NO];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.statusBarNotification displayNotificationWithMessage:@"Placing Order..." completion:nil];
         });
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self.BTMenuVC clearSelectedMenuItems];
-            [self.navigationController popViewControllerAnimated:YES];
-            [self.statusBarNotification displayNotificationWithMessage:@"Order has been placed!" forDuration:2.5];
-        });
-        
-        return nil;
+        [[BTItem processItems:[self.selectedMenuItems mutableCopy]] continueWithBlock:^id(BFTask *task) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self.statusBarNotification dismissNotification];
+            });
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self.BTMenuVC clearSelectedMenuItems];
+                [self.navigationController popViewControllerAnimated:YES];
+                [self.statusBarNotification displayNotificationWithMessage:@"Order has been placed!" forDuration:2.5];
+            });
+            
+            return nil;
+        }];
     }];
+}
+
+- (void)dropInViewControllerDidCancel:(__unused BTDropInViewController *)viewController {
+    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)handleBackButton:(id)sender {
