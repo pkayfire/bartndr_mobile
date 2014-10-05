@@ -145,11 +145,31 @@
         [self presentViewController:navigationController
                            animated:YES
                          completion:nil];
+    } else {
+        [self.placeOrderButton setUserInteractionEnabled:NO];
+
     }
 }
 
 - (void)userDidCancelPayment {
     [self.braintreeVC dismissViewControllerAnimated:YES completion:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.statusBarNotification displayNotificationWithMessage:@"Placing Order..." completion:nil];
+    });
+    
+    [[BTItem processItems:[self.selectedMenuItems mutableCopy]] continueWithBlock:^id(BFTask *task) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.statusBarNotification dismissNotification];
+        });
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.BTMenuVC clearSelectedMenuItems];
+            [self.navigationController popViewControllerAnimated:YES];
+            [self.statusBarNotification displayNotificationWithMessage:@"Order has been placed!" forDuration:2.5];
+        });
+        
+        return nil;
+    }];
 }
 
 - (void)dropInViewController:(__unused BTDropInViewController *)viewController didSucceedWithPaymentMethod:(BTPaymentMethod *)paymentMethod {
