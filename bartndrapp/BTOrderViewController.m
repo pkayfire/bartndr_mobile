@@ -121,7 +121,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-  
+
 - (IBAction)handlePlaceOrderButton:(id)sender {
     [self.placeOrderButton setUserInteractionEnabled:NO];
     
@@ -135,6 +135,7 @@
         });
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.BTMenuVC clearSelectedMenuItems];
             [self.navigationController popViewControllerAnimated:YES];
             [self.statusBarNotification displayNotificationWithMessage:@"Order has been placed!" forDuration:2.5];
         });

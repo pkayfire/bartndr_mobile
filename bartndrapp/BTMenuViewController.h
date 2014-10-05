@@ -17,6 +17,7 @@
 
 - (IBAction)handleCheckOut:(id)sender;
 - (void)updateCheckOutButton;
+- (void)clearSelectedMenuItems;
 
 @property NSMutableArray *menuItems;
 

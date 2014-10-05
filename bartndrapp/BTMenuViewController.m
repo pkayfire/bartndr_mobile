@@ -120,6 +120,13 @@
     }];
 }
 
+- (void)clearSelectedMenuItems
+{
+    [self.selectedMenuItems removeAllObjects];
+    [self.menuTableView reloadData];
+    [self hideCheckOutButton];
+}
+
 #pragma mark - UITableView Delegate Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -186,6 +193,8 @@
     
     destination.selectedMenuItems = [self.selectedMenuItems mutableCopy];
     destination.itemObjectIDToBTItem = [self.itemObjectIDToBTItem mutableCopy];
+    
+    destination.BTMenuVC = self;
 }
 
 #pragma mark - Check Out

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CWStatusBarNotification.h"
+#import "BTMenuViewController.h"
 
 @interface BTOrderViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
@@ -17,6 +18,8 @@
 
 @property NSMutableDictionary *selectedMenuItems;
 @property NSMutableDictionary *itemObjectIDToBTItem;
+
+@property BTMenuViewController *BTMenuVC;
 
 @property (weak, nonatomic) IBOutlet UITableView *menuItemsTableView;
 @property (weak, nonatomic) IBOutlet UIButton *placeOrderButton;
