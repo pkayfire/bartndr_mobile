@@ -13,6 +13,7 @@
 
 #import "BTItem.h"
 
+#import <QuartzCore/QuartzCore.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface BTMenuViewController ()
@@ -26,14 +27,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     if ([[AppDelegate get] currentStore]) {
         //[self setTitle:[[[AppDelegate get] currentStore] store_name]];
     }
     
+    UIColor *bartndrRed = [UIColor colorWithRed:233.0/255.0f green:55.0/255.0f blue:41.0/255.0f alpha:1.0f];
+    
     self.statusBarNotification = [CWStatusBarNotification new];
-    self.statusBarNotification.notificationLabelBackgroundColor = [UIColor whiteColor];
-    self.statusBarNotification.notificationLabelTextColor = [UIColor blackColor];
+    self.statusBarNotification.notificationLabelBackgroundColor = bartndrRed;
+    self.statusBarNotification.notificationLabelTextColor = [UIColor whiteColor];
     
     self.menuTableView.delegate = self;
     self.menuTableView.dataSource = self;
@@ -46,7 +48,7 @@
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
     
-    [self.storeImageView sd_setImageWithURL:[NSURL URLWithString:@"http://drinks.seriouseats.com/images/2013/06/20130604-novela-4.jpg"] placeholderImage:[UIImage imageNamed:@"placeholder_store"]];
+    [self.storeImageView sd_setImageWithURL:[NSURL URLWithString:@"https://scontent-b.xx.fbcdn.net/hphotos-xpf1/t31.0-8/10548074_10152372765902732_3235787422795169351_o.jpg"] placeholderImage:[UIImage imageNamed:@"placeholder_store"]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -138,7 +140,7 @@
         cell.quantityLabel.text = @"0";
     }
     
-    [cell.itemImageView sd_setImageWithURL:[NSURL URLWithString:@"http://scontent-a.cdninstagram.com/hphotos-xaf1/t51.2885-15/10632396_338122119691992_62189954_n.jpg"] placeholderImage:[UIImage imageNamed:@"placeholder_store"]];
+    [cell.itemImageView sd_setImageWithURL:[NSURL URLWithString:[menuItem image_url]] placeholderImage:[UIImage imageNamed:@"placeholder_item"]];
     
     return cell;
 }
@@ -169,6 +171,19 @@
 
         return nil;
     }];
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0, 0, 320, 45);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 @end
