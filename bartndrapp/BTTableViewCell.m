@@ -21,9 +21,7 @@
     self.plusButton = [[UIButton alloc] initWithFrame:CGRectMake(277, 1, 34, 34)];
     [self.plusButton setImage:[UIImage imageNamed:@"plus_button"] forState:UIControlStateNormal];
     [self.plusButton addTarget:self action:@selector(handlePlusButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.plusButton];
-    
-    [self.descriptionLabel sizeToFit];
+    [self addSubview:self.plusButton];    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -34,7 +32,7 @@
 
 - (void)handlePlusButton:(id)sender {
     NSIndexPath *indexPath = [self.menuTableView indexPathForCell:self];
-    
+        
     if ([self.selectedMenuItems objectForKey:self.itemObjectID]) {
         NSNumber *quantity = [self.selectedMenuItems objectForKey:self.itemObjectID];
         [self.selectedMenuItems setObject:[NSNumber numberWithInt:[quantity intValue] + 1] forKey:self.itemObjectID];

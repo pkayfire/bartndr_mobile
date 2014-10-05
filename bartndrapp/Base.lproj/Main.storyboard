@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-526" y="92"/>
         </scene>
-        <!--Bartndr-->
+        <!--BARTNDR-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="BTMenuViewController" sceneMemberID="viewController">
@@ -76,6 +76,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         <connections>
                                             <outlet property="descriptionLabel" destination="Ze5-ae-lT8" id="XxR-GV-arQ"/>
                                             <outlet property="itemImageView" destination="Rfj-2j-2YS" id="KAo-KP-1l0"/>
@@ -86,9 +87,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder_store" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-rs-Zz3">
-                                <rect key="frame" x="0.0" y="64" width="320" height="189"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bnr-3Y-PKO">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16.200000762939453"/>
@@ -100,11 +98,14 @@
                                     <action selector="handleCheckOut:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mVY-zN-OiG"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder_store" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-rs-Zz3">
+                                <rect key="frame" x="0.0" y="64" width="320" height="189"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Bartndr" id="3B2-jb-CwW">
+                    <navigationItem key="navigationItem" title="BARTNDR" id="3B2-jb-CwW">
                         <barButtonItem key="rightBarButtonItem" image="progress" id="WXO-Lg-F7s">
                             <color key="tintColor" red="0.9137254901960784" green="0.21568627450980393" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -117,17 +118,17 @@
                         <outlet property="menuTableView" destination="hSl-RY-lL3" id="0wN-2l-syl"/>
                         <outlet property="progressBarButton" destination="WXO-Lg-F7s" id="pzX-6f-x15"/>
                         <outlet property="storeImageView" destination="wD6-rs-Zz3" id="hNd-E6-bKT"/>
-                        <segue destination="QKS-Gv-SgW" kind="push" id="DMa-3w-5Ce"/>
+                        <segue destination="QKS-Gv-SgW" kind="push" identifier="MenuToOrder" id="DMa-3w-5Ce"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-75" y="92"/>
         </scene>
-        <!--View Controller-->
+        <!--Order View Controller-->
         <scene sceneID="sZQ-oN-8iO">
             <objects>
-                <viewController id="QKS-Gv-SgW" sceneMemberID="viewController">
+                <viewController id="QKS-Gv-SgW" customClass="BTOrderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bEZ-gz-DOg"/>
                         <viewControllerLayoutGuide type="bottom" id="c2L-Xw-F0x"/>
@@ -137,17 +138,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Dwc-k3-96u">
-                                <rect key="frame" x="0.0" y="190" width="320" height="327"/>
+                                <rect key="frame" x="0.0" y="190" width="320" height="268"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell tag="10" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BTTableViewCell" rowHeight="100" id="nwA-FI-xto" customClass="BTTableViewCell">
+                                    <tableViewCell tag="10" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BTTableViewCell" rowHeight="100" id="nwA-FI-xto" customClass="BTOrderTableViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nwA-FI-xto" id="xMu-zd-tEM">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvI-fn-VcS" userLabel="Quantity">
-                                                    <rect key="frame" x="279" y="39" width="30" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvI-fn-VcS" userLabel="Quantity">
+                                                    <rect key="frame" x="248" y="19" width="64" height="30"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="23.25"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -159,7 +160,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Daisy Buchanan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3q-ih-nhQ" userLabel="Name">
-                                                    <rect key="frame" x="99" y="20" width="168" height="21"/>
+                                                    <rect key="frame" x="99" y="21" width="153" height="21"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -167,20 +168,21 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder_item" translatesAutoresizingMaskIntoConstraints="NO" id="Vmb-6v-VUN" userLabel="Image">
                                                     <rect key="frame" x="19" y="17" width="65" height="65"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Drink it now..." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IU2-jK-7BG" userLabel="Description">
-                                                    <rect key="frame" x="99" y="39" width="168" height="19"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quantity: 1" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IU2-jK-7BG" userLabel="Description">
+                                                    <rect key="frame" x="99" y="40" width="160" height="19"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="descriptionLabel" destination="IU2-jK-7BG" id="E4X-I8-fck"/>
-                                            <outlet property="itemImageView" destination="Vmb-6v-VUN" id="BRD-87-OcN"/>
-                                            <outlet property="nameLabel" destination="Z3q-ih-nhQ" id="H6U-hD-Qwt"/>
-                                            <outlet property="priceLabel" destination="8CQ-po-7sp" id="87i-ar-Dzi"/>
-                                            <outlet property="quantityLabel" destination="wvI-fn-VcS" id="AcM-1R-zOd"/>
+                                            <outlet property="itemImageView" destination="Vmb-6v-VUN" id="ep9-Ev-Y9e"/>
+                                            <outlet property="nameLabel" destination="Z3q-ih-nhQ" id="KkS-Ez-CYz"/>
+                                            <outlet property="priceLabel" destination="8CQ-po-7sp" id="REB-K4-hmP"/>
+                                            <outlet property="quantityLabel" destination="IU2-jK-7BG" id="AiY-X6-oWI"/>
+                                            <outlet property="subtotalPriceLabel" destination="wvI-fn-VcS" id="OeT-hq-CaN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -195,15 +197,33 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="handlePlaceOrderButton:" destination="QKS-Gv-SgW" eventType="touchUpInside" id="0Ok-VV-bMW"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beV-iX-DG3" userLabel="Quantity">
+                                <rect key="frame" x="248" y="474" width="64" height="30"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="23.25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="KJv-SY-EfP">
                         <barButtonItem key="leftBarButtonItem" image="back_arrow" id="f6n-qR-QWW">
                             <color key="tintColor" red="1" green="0.2156862745" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="handleBackButton:" destination="QKS-Gv-SgW" id="DiW-vh-O8P"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="menuItemsTableView" destination="Dwc-k3-96u" id="GpQ-aG-NaW"/>
+                        <outlet property="placeOrderButton" destination="6br-oS-deM" id="kLn-rH-7vw"/>
+                        <outlet property="storeImageView" destination="LRb-ON-OId" id="85m-fR-VVc"/>
+                        <outlet property="totalPrice" destination="beV-iX-DG3" id="R8e-pN-IIH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3eU-mY-DaP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -14,12 +14,15 @@
 #import "BTItem.h"
 #import "BTTask.h"
 
+#import "BTOrderViewController.h"
+
 #import <QuartzCore/QuartzCore.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface BTMenuViewController ()
 
 @property NSMutableDictionary *selectedMenuItems;
+@property NSMutableDictionary *itemObjectIDToBTItem;
 
 @end
 
@@ -41,6 +44,7 @@
     
     self.menuItems = [[NSMutableArray alloc] init];
     self.selectedMenuItems = [[NSMutableDictionary alloc] init];
+    self.itemObjectIDToBTItem = [[NSMutableDictionary alloc] init];
     
     self.checkOutButton.alpha = 0.0f;
     
@@ -48,12 +52,12 @@
                                              selector:@selector(applicationEnteredForeground:)
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
+    
+    [self updateMenuItems];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"viewWillAppear");
-    [self updateMenuItems];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -67,8 +71,9 @@
         [[[AppDelegate get] currentStore] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             if (!error) {
                 [[AppDelegate get] setCurrentStore:(BTStore *)object];
-                [self setTitle:[[[AppDelegate get] currentStore] store_name]];
-                [self.storeImageView sd_setImageWithURL:[NSURL URLWithString:[[[AppDelegate get] currentStore] image_url]] placeholderImage:[UIImage imageNamed:@"placeholder_store"]];
+                [self setTitle:[[[[AppDelegate get] currentStore] store_name] uppercaseString]];
+                [self.storeImageView sd_setImageWithURL:[NSURL URLWithString:[[[AppDelegate get] currentStore] image_url]]
+                                       placeholderImage:[UIImage imageNamed:@"placeholder_store"]];
             } else {
                 [self.statusBarNotification displayNotificationWithMessage:@"An error occured!" forDuration:2.5];
             }
@@ -93,7 +98,10 @@
             self.menuItems = (NSMutableArray *)task.result;
             [self.menuTableView reloadData];
             
-            //[self setTitle:[[[AppDelegate get] currentStore] store_name]];
+            // Set up itemObjectIDToBTItem
+            for (BTItem *item in self.menuItems) {
+                [self.itemObjectIDToBTItem setObject:item forKey:item.objectId];
+            }
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
                 [self.statusBarNotification dismissNotification];
@@ -163,30 +171,27 @@
     return cell;
 }
 
+#pragma mark - Segue Methods
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    BTOrderViewController *destination = (BTOrderViewController *)segue.destinationViewController;
+    
+    // clean selectedMenuItems
+    for (NSString *objectID in [self.selectedMenuItems allKeys]) {
+        if ([self.selectedMenuItems objectForKey:objectID] == [NSNumber numberWithInt:0]) {
+            [self.selectedMenuItems removeObjectForKey:objectID];
+        }
+    }
+    
+    destination.selectedMenuItems = [self.selectedMenuItems mutableCopy];
+    destination.itemObjectIDToBTItem = [self.itemObjectIDToBTItem mutableCopy];
+}
+
 #pragma mark - Check Out
 
 - (IBAction)handleCheckOut:(id)sender {
-    [self.checkOutButton setUserInteractionEnabled:NO];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self.statusBarNotification displayNotificationWithMessage:@"Checking Out..." completion:nil];
-    });
-    
-    [[BTItem processItems:[self.selectedMenuItems mutableCopy]] continueWithBlock:^id(BFTask *task) {
-        [self.selectedMenuItems removeAllObjects];
-        [self.menuTableView reloadData];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self.statusBarNotification dismissNotification];
-        });
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self.checkOutButton setTitle:@"Check Out" forState:UIControlStateNormal];
-            [self.checkOutButton setUserInteractionEnabled:YES];
-            [self.statusBarNotification displayNotificationWithMessage:@"Check Out Complete!" forDuration:2.5];
-        });
-
-        return nil;
-    }];
+    [self performSegueWithIdentifier:@"MenuToOrder" sender:self];
 }
 
 - (void)updateCheckOutButton

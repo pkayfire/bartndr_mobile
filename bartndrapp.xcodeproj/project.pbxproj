@@ -14,6 +14,8 @@
 		66607F2D19DCF84E000DC2A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66607F2B19DCF84E000DC2A1 /* Main.storyboard */; };
 		66607F2F19DCF84E000DC2A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66607F2E19DCF84E000DC2A1 /* Images.xcassets */; };
 		66607F3E19DCF84E000DC2A1 /* bartndrappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66607F3D19DCF84E000DC2A1 /* bartndrappTests.m */; };
+		6688A9B119E0DE1200C94096 /* BTOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6688A9B019E0DE1200C94096 /* BTOrderViewController.m */; };
+		6688A9B419E0E36A00C94096 /* BTOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6688A9B319E0E36A00C94096 /* BTOrderTableViewCell.m */; };
 		668CD01D19DFF77D0096C4A8 /* BTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 668CD01C19DFF77D0096C4A8 /* BTTableViewCell.m */; };
 		66DE128919DFAB15009632E9 /* BTTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DE128819DFAB15009632E9 /* BTTask.m */; };
 		66DE128C19DFAB32009632E9 /* BTStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DE128B19DFAB32009632E9 /* BTStore.m */; };
@@ -52,6 +54,10 @@
 		66607F3719DCF84E000DC2A1 /* bartndrappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bartndrappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66607F3C19DCF84E000DC2A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66607F3D19DCF84E000DC2A1 /* bartndrappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bartndrappTests.m; sourceTree = "<group>"; };
+		6688A9AF19E0DE1200C94096 /* BTOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTOrderViewController.h; sourceTree = "<group>"; };
+		6688A9B019E0DE1200C94096 /* BTOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTOrderViewController.m; sourceTree = "<group>"; };
+		6688A9B219E0E36A00C94096 /* BTOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTOrderTableViewCell.h; sourceTree = "<group>"; };
+		6688A9B319E0E36A00C94096 /* BTOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTOrderTableViewCell.m; sourceTree = "<group>"; };
 		668CD01B19DFF77D0096C4A8 /* BTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTTableViewCell.h; sourceTree = "<group>"; };
 		668CD01C19DFF77D0096C4A8 /* BTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTTableViewCell.m; sourceTree = "<group>"; };
 		66DE128619DF60B2009632E9 /* Bartndr-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bartndr-Prefix.pch"; sourceTree = "<group>"; };
@@ -101,6 +107,8 @@
 			children = (
 				66DE129319DFACB0009632E9 /* BTMenuViewController.h */,
 				66DE129419DFACB0009632E9 /* BTMenuViewController.m */,
+				6688A9AF19E0DE1200C94096 /* BTOrderViewController.h */,
+				6688A9B019E0DE1200C94096 /* BTOrderViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -194,6 +202,8 @@
 			children = (
 				668CD01B19DFF77D0096C4A8 /* BTTableViewCell.h */,
 				668CD01C19DFF77D0096C4A8 /* BTTableViewCell.m */,
+				6688A9B219E0E36A00C94096 /* BTOrderTableViewCell.h */,
+				6688A9B319E0E36A00C94096 /* BTOrderTableViewCell.m */,
 			);
 			name = ViewObjects;
 			sourceTree = "<group>";
@@ -359,10 +369,12 @@
 			files = (
 				66607F2719DCF84E000DC2A1 /* bartndrapp.xcdatamodeld in Sources */,
 				66DE128F19DFAB43009632E9 /* BTItem.m in Sources */,
+				6688A9B419E0E36A00C94096 /* BTOrderTableViewCell.m in Sources */,
 				66DE128C19DFAB32009632E9 /* BTStore.m in Sources */,
 				66607F2419DCF84E000DC2A1 /* AppDelegate.m in Sources */,
 				66DE128919DFAB15009632E9 /* BTTask.m in Sources */,
 				668CD01D19DFF77D0096C4A8 /* BTTableViewCell.m in Sources */,
+				6688A9B119E0DE1200C94096 /* BTOrderViewController.m in Sources */,
 				66DE129519DFACB0009632E9 /* BTMenuViewController.m in Sources */,
 				66607F2119DCF84E000DC2A1 /* main.m in Sources */,
 			);
