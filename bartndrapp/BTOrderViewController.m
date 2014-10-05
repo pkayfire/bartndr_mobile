@@ -129,6 +129,8 @@
         [self.statusBarNotification displayNotificationWithMessage:@"Placing Order..." completion:nil];
     });
     
+    //Braintree *braintree = [Braintree braintreeWithClientToken:self.clientToken];
+    
     [[BTItem processItems:[self.selectedMenuItems mutableCopy]] continueWithBlock:^id(BFTask *task) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
             [self.statusBarNotification dismissNotification];

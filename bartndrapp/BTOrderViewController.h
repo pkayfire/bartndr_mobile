@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CWStatusBarNotification.h"
 #import "BTMenuViewController.h"
+#import <Braintree/Braintree.h>
 
-@interface BTOrderViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface BTOrderViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, BTDropInViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *storeImageView;
 

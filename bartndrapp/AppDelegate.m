@@ -15,6 +15,10 @@
 
 #import "CWStatusBarNotification.h"
 
+#import <Braintree/Braintree.h>
+//#import <AFNetworking/AFNetworking.h>
+
+
 @interface AppDelegate ()
 
 @property CWStatusBarNotification *statusBarNotification;
@@ -43,6 +47,20 @@ static NSString *beacon_region_UUID_string = @"8BDBDE7A-E3E2-4941-8F45-743B1CAF8
         self.currentStore = [BTStore objectWithoutDataWithClassName:@"Store" objectId:@"EeND5vfxv1"];
     }
     
+    // Intialize Braintree
+    [Braintree setReturnURLScheme:@"com.bartndr.bartndrapp.payments"];
+    
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    [manager GET:@"https://your-server/client_token.json"
+//      parameters:@{ @"your-server-authentication": @"token", @"your-customer-session": @"session"}
+//         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//             // Setup braintree with responseObject[@"client_token"]
+//             // self.braintree = [Braintree braintreeWithClientToken:responseObject[@"client_token"]];
+//         }
+//         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//             // Handle failure communicating with your server
+//         }];
+
     // Initialize CLLocationManager
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -66,6 +84,15 @@ static NSString *beacon_region_UUID_string = @"8BDBDE7A-E3E2-4941-8F45-743B1CAF8
     self.statusBarNotification.notificationLabelTextColor = [UIColor whiteColor];
         
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    return [Braintree handleOpenURL:url sourceApplication:sourceApplication];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
