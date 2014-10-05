@@ -113,14 +113,101 @@
                         <outlet property="checkOutButton" destination="Bnr-3Y-PKO" id="qWv-sq-bc6"/>
                         <outlet property="menuTableView" destination="hSl-RY-lL3" id="0wN-2l-syl"/>
                         <outlet property="storeImageView" destination="wD6-rs-Zz3" id="hNd-E6-bKT"/>
+                        <segue destination="QKS-Gv-SgW" kind="push" id="DMa-3w-5Ce"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-70" y="81"/>
+            <point key="canvasLocation" x="-75" y="92"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="sZQ-oN-8iO">
+            <objects>
+                <viewController id="QKS-Gv-SgW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bEZ-gz-DOg"/>
+                        <viewControllerLayoutGuide type="bottom" id="c2L-Xw-F0x"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ckC-4G-aDL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Dwc-k3-96u">
+                                <rect key="frame" x="0.0" y="190" width="320" height="327"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell tag="10" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BTTableViewCell" rowHeight="100" id="nwA-FI-xto" customClass="BTTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nwA-FI-xto" id="xMu-zd-tEM">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wvI-fn-VcS" userLabel="Quantity">
+                                                    <rect key="frame" x="279" y="39" width="30" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="23.25"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CQ-po-7sp" userLabel="Price">
+                                                    <rect key="frame" x="99" y="64" width="38" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Daisy Buchanan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3q-ih-nhQ" userLabel="Name">
+                                                    <rect key="frame" x="99" y="20" width="168" height="21"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder_item" translatesAutoresizingMaskIntoConstraints="NO" id="Vmb-6v-VUN" userLabel="Image">
+                                                    <rect key="frame" x="19" y="17" width="65" height="65"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Drink it now..." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IU2-jK-7BG" userLabel="Description">
+                                                    <rect key="frame" x="99" y="39" width="168" height="19"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="12"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="IU2-jK-7BG" id="E4X-I8-fck"/>
+                                            <outlet property="itemImageView" destination="Vmb-6v-VUN" id="BRD-87-OcN"/>
+                                            <outlet property="nameLabel" destination="Z3q-ih-nhQ" id="H6U-hD-Qwt"/>
+                                            <outlet property="priceLabel" destination="8CQ-po-7sp" id="87i-ar-Dzi"/>
+                                            <outlet property="quantityLabel" destination="wvI-fn-VcS" id="AcM-1R-zOd"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder_store" translatesAutoresizingMaskIntoConstraints="NO" id="LRb-ON-OId">
+                                <rect key="frame" x="0.0" y="64" width="320" height="189"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6br-oS-deM">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16.200000762939453"/>
+                                <state key="normal" title="Place Order" backgroundImage="checkout_button">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="KJv-SY-EfP">
+                        <barButtonItem key="leftBarButtonItem" image="back_arrow" id="f6n-qR-QWW">
+                            <color key="tintColor" red="1" green="0.2156862745" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3eU-mY-DaP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="399" y="92"/>
         </scene>
     </scenes>
     <resources>
+        <image name="back_arrow" width="12" height="20"/>
         <image name="checkout_button" width="320" height="45"/>
         <image name="placeholder_item" width="250" height="250"/>
         <image name="placeholder_store" width="320" height="189"/>

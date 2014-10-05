@@ -174,6 +174,7 @@
         });
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.25 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self.checkOutButton setTitle:@"Check Out" forState:UIControlStateNormal];
             [self.checkOutButton setUserInteractionEnabled:YES];
             [self.statusBarNotification displayNotificationWithMessage:@"Check Out Complete!" forDuration:2.5];
         });
