@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *checkOutButton;
 
 - (IBAction)handleCheckOut:(id)sender;
+- (void)updateCheckOutButton;
 
 @property NSMutableArray *menuItems;
 

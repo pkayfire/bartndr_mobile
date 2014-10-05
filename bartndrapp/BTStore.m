@@ -55,8 +55,6 @@
                  andMinorID:(NSString *)minorID
 {
     BFTaskCompletionSource *getStoreCompletionSource = [BFTaskCompletionSource taskCompletionSource];
-    NSLog(@"minorID: %@", minorID);
-    
     PFQuery *storeQuery = [BTStore query];
     [storeQuery whereKey:@"UUID" equalTo:uuid];
     [storeQuery whereKey:@"minorID" equalTo:minorID];

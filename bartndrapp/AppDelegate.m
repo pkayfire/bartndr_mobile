@@ -100,8 +100,7 @@ static NSString *beacon_region_UUID_string = @"8BDBDE7A-E3E2-4941-8F45-743B1CAF8
 {
     if (state == CLRegionStateInside) {
         //Start Ranging
-        NSLog(@"%ld", [[UIApplication sharedApplication] applicationState]);
-        if ([region isKindOfClass:[CLBeaconRegion class]] && ([[UIApplication sharedApplication] applicationState] == UIApplicationStateInactive) )  {
+        if ([region isKindOfClass:[CLBeaconRegion class]]) {
             CLBeaconRegion *beaconRegion = (CLBeaconRegion *) region;
             [manager startRangingBeaconsInRegion:beaconRegion];
         }

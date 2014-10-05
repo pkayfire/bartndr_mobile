@@ -28,7 +28,13 @@
     [super viewDidLoad];
     
     if ([[AppDelegate get] currentStore]) {
-        //[self setTitle:[[[AppDelegate get] currentStore] store_name]];
+        [[[AppDelegate get] currentStore] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            if (!error) {
+                NSLog(@"%@", object);
+            } else {
+                
+            }
+        }];
     }
     
     UIColor *bartndrRed = [UIColor colorWithRed:233.0/255.0f green:55.0/255.0f blue:41.0/255.0f alpha:1.0f];
@@ -173,17 +179,35 @@
     }];
 }
 
-- (UIImage *)imageWithColor:(UIColor *)color {
-    CGRect rect = CGRectMake(0, 0, 320, 45);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
+- (void)updateCheckOutButton
+{
+    NSNumber *totalNumofItems = @0;
     
-    CGContextFillRect(context, rect);
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
+    for (id key in self.selectedMenuItems) {
+        NSString *itemID = (NSString *)key;
+        NSNumber *quantity = [self.selectedMenuItems objectForKey:itemID];
+        
+        totalNumofItems = [NSNumber numberWithInt:[totalNumofItems intValue] + [quantity intValue]];
+    }
     
-    return image;
+    NSLog(@"Total Number of Items: %@", totalNumofItems);
+    
+    if ([totalNumofItems intValue] > 0) {
+        [self.checkOutButton setTitle:[NSString stringWithFormat:@"Check Out(%@)", totalNumofItems] forState:UIControlStateNormal];
+        [self showCheckOutButton];
+    } else {
+        [self hideCheckOutButton];
+    }
+}
+
+- (void)showCheckOutButton
+{
+    
+}
+
+- (void)hideCheckOutButton
+{
+    
 }
 
 @end
