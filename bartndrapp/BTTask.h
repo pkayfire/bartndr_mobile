@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, TaskStatus) {
 + (NSString *)parseClassName;
 
 + (BTTask *)createTaskForItemID:(NSString *)itemID;
++ (BFTask *)getNumOfTasksInQueue;
 
 @property NSNumber *status;
 @property BTItem *for_item;

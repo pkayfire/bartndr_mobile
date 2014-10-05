@@ -86,7 +86,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder_store" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-rs-Zz3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="placeholder_store" translatesAutoresizingMaskIntoConstraints="NO" id="wD6-rs-Zz3">
                                 <rect key="frame" x="0.0" y="64" width="320" height="189"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bnr-3Y-PKO">
@@ -107,11 +107,15 @@
                     <navigationItem key="navigationItem" title="Bartndr" id="3B2-jb-CwW">
                         <barButtonItem key="rightBarButtonItem" image="progress" id="WXO-Lg-F7s">
                             <color key="tintColor" red="0.9137254901960784" green="0.21568627450980393" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="handleProgressBarButton:" destination="vXZ-lx-hvc" id="Xzr-rk-tyo"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="checkOutButton" destination="Bnr-3Y-PKO" id="qWv-sq-bc6"/>
                         <outlet property="menuTableView" destination="hSl-RY-lL3" id="0wN-2l-syl"/>
+                        <outlet property="progressBarButton" destination="WXO-Lg-F7s" id="pzX-6f-x15"/>
                         <outlet property="storeImageView" destination="wD6-rs-Zz3" id="hNd-E6-bKT"/>
                         <segue destination="QKS-Gv-SgW" kind="push" id="DMa-3w-5Ce"/>
                     </connections>

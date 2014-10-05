@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 
 #import "BTItem.h"
+#import "BTTask.h"
 
 #import <QuartzCore/QuartzCore.h>
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -27,17 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if ([[AppDelegate get] currentStore]) {
-        [[[AppDelegate get] currentStore] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            if (!error) {
-                [[AppDelegate get] setCurrentStore:(BTStore *)object];
-                [self setTitle:[[[AppDelegate get] currentStore] store_name]];
-                [self.storeImageView sd_setImageWithURL:[NSURL URLWithString:[[[AppDelegate get] currentStore] image_url]] placeholderImage:[UIImage imageNamed:@"placeholder_store"]];
-            } else {
-                [self.statusBarNotification displayNotificationWithMessage:@"An error occured!" forDuration:2.5];
-            }
-        }];
-    }
+    [self updateStoreDetails];
     
     UIColor *bartndrRed = [UIColor colorWithRed:233.0/255.0f green:55.0/255.0f blue:41.0/255.0f alpha:1.0f];
     
@@ -70,8 +61,24 @@
     
 }
 
+- (void)updateStoreDetails
+{
+    if ([[AppDelegate get] currentStore]) {
+        [[[AppDelegate get] currentStore] fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            if (!error) {
+                [[AppDelegate get] setCurrentStore:(BTStore *)object];
+                [self setTitle:[[[AppDelegate get] currentStore] store_name]];
+                [self.storeImageView sd_setImageWithURL:[NSURL URLWithString:[[[AppDelegate get] currentStore] image_url]] placeholderImage:[UIImage imageNamed:@"placeholder_store"]];
+            } else {
+                [self.statusBarNotification displayNotificationWithMessage:@"An error occured!" forDuration:2.5];
+            }
+        }];
+    }
+}
+
 - (void)applicationEnteredForeground:(NSNotification *)notification {
     NSLog(@"Application Entered Foreground");
+    [self updateStoreDetails];
     [self updateMenuItems];
 }
 
@@ -104,6 +111,8 @@
         return nil;
     }];
 }
+
+#pragma mark - UITableView Delegate Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -154,10 +163,7 @@
     return cell;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - Check Out
 
 - (IBAction)handleCheckOut:(id)sender {
     [self.checkOutButton setUserInteractionEnabled:NO];
@@ -221,5 +227,26 @@
         [self.checkOutButton setTitle:@"Check Out" forState:UIControlStateNormal];
     }];
 }
+
+#pragma mark - Progress Bar
+
+- (IBAction)handleProgressBarButton:(id)sender {
+    [[BTTask getNumOfTasksInQueue] continueWithBlock:^id(BFTask *task) {
+        if (!task.error) {
+            [self.statusBarNotification displayNotificationWithMessage:[NSString stringWithFormat:@"There are currently %@ drinks in line to be made!", (NSNumber *)task.result]
+                                                           forDuration:2.5];
+        } else {
+            [self.statusBarNotification displayNotificationWithMessage:@"An error occured!" forDuration:2.5];
+        }
+        
+        return nil;
+    }];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 
 @end

@@ -35,4 +35,22 @@
     return task;
 }
 
++ (BFTask *)getNumOfTasksInQueue
+{
+    BFTaskCompletionSource *numOfTasksCompletionSource = [BFTaskCompletionSource taskCompletionSource];
+    
+    PFQuery *numOfTasksInQueue = [BTTask query];
+    [numOfTasksInQueue whereKey:@"status" equalTo:[NSNumber numberWithInt:TaskStatusCreated]];
+    
+    [numOfTasksInQueue countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        if (!error) {
+            [numOfTasksCompletionSource setResult:[NSNumber numberWithInt:number]];
+        } else {
+            [numOfTasksCompletionSource setError:error];
+        }
+    }];
+    
+    return numOfTasksCompletionSource.task;
+}
+
 @end

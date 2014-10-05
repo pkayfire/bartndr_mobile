@@ -22,5 +22,8 @@
 
 @property CWStatusBarNotification *statusBarNotification;
 @property (weak, nonatomic) IBOutlet UIImageView *storeImageView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *progressBarButton;
+
+- (IBAction)handleProgressBarButton:(id)sender;
 
 @end
